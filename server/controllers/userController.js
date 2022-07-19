@@ -30,8 +30,20 @@ const registerUser = catchAsyncErrors(async(req, res, next) => {
         role,
     })
 
+    const userId = user.id
+    const accessToken = jwt.sign({ userId }, "makfi09q39r1q8nkg0fafonla", { expiresIn: "2d" })
 
-    sendToken(user, 201, res)
+    const cookieOptions = {
+        expires: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000),
+        httpOnly: true,
+    }
+
+    res.status(200).cookie('token', accessToken, cookieOptions).json({
+        success: true,
+        user,
+        accessToken
+    })
+
 
 })
 
@@ -46,16 +58,28 @@ const loginUser = catchAsyncErrors(async(req, res, next) => {
     }
 
     const user = await User.findAll({
-        where: { email: email }
-    }).select('+password')
+            where: { email: email }
+        })
+        // .select('+password')
 
+    const userId = user[0].id
+    const accessToken = jwt.sign({ userId }, "makfi09q39r1q8nkg0fafonla", { expiresIn: "2d" })
 
     if (!user) return next(new ErrorHandler('Invalid Email or Password', 401))
 
-    const isPasswordMatched = await user.comparePassword(password)
+    const isPasswordMatched = await bcrypt.compare(password, user[0].password)
     if (!isPasswordMatched) return next(new ErrorHandler('Password does not Match', 401))
 
-    sendToken(user, 200, res)
+    const cookieOptions = {
+        expires: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000),
+        httpOnly: true,
+    }
+
+    res.status(200).cookie('token', accessToken, cookieOptions).json({
+        success: true,
+        user,
+        accessToken
+    })
 
 })
 

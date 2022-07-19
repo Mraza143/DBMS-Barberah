@@ -6,13 +6,13 @@ const bodyParser = require('body-parser')
 var path = require('path');
 var cors = require('cors')
 const errorMiddleware = require('./middleware/error')
-const dotenv = require("dotenv")
+    // const dotenv = require("dotenv")
 
 
 
 // Config
 // require('dotenv').config({ path: '../.env' })
-dotenv.config({ path: '../confidentials.env' })
+// dotenv.config({ path: '../confidentials.env' })
 
 
 // Builtin Middlewares
@@ -39,7 +39,7 @@ app.use(bodyParser.json());
 // const router = require('./routes/productRoutes.js')
 // app.use('/api/products', router)
 const user = require('./routes/userRoutes.js')
-app.use('api/users', user)
+app.use('/api/users', user)
 
 
 module.exports = app

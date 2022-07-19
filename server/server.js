@@ -1,18 +1,14 @@
-//const express = require('express')
-//const cors = require('cors')
-
 const app = require("./app");
-require('dotenv').config();
-
-// middleware
-// routers
+require('dotenv').config()
+    // middleware
+    // routers
 
 
 
 
 //port
+const PORT = process.env.REACT_APP_PORT || 5000
 
-const PORT = process.env.PORT;
 
 //server
 
