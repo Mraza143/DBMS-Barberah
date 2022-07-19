@@ -5,12 +5,7 @@ module.exports = (sequelize, DataTypes) => {
 
     const Users = sequelize.define("users", {
 
-        id: {
-            type: Sequelize.UUID,
-            defaultValue: Sequelize.UUIDV4,
-            primaryKey: true
 
-        },
 
         name: {
             type: DataTypes.STRING
@@ -36,11 +31,11 @@ module.exports = (sequelize, DataTypes) => {
 
 
 // Generating JWT Token
-Users.getJWTToken = function() {
+/*Users.getJWTToken = function() {
     return jwt.sign({ id: this.id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES })
 }
 
 // Comparing Password
 Users.comparePassword = async function(enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.password)
-}
+}*/
