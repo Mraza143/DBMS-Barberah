@@ -8,7 +8,12 @@ const jwt = require("jsonwebtoken")
 
 
 // create main Model
-const User = db.users
+const User = db.users;
+//PORT = 5000;
+
+//const JWT_SECRET="makfi09q39r1q8nkg0fafonla";
+//const JWT_EXPIRES="2d";
+//const COOKIE_EXPIRE=5;
 
 
 // Main Work

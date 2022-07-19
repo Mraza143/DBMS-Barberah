@@ -45,4 +45,20 @@ db.sequelize.sync({ force: false })
         console.log('yes re-sync done!')
     })
 
+
+
+//code for establising relationships 
+
+db.salons.hasMany(db.barbers, {
+    foreignKey: 'salon_id'
+    //as: 'barber'
+})
+
+db.barbers.belongsTo(db.salons)
+//, {
+    //foreignKey: 'salon_id',
+    //as: 'salon'
+//})
+
+
 module.exports = db

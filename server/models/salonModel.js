@@ -1,36 +1,23 @@
-
-
 module.exports = (sequelize, DataTypes) => {
 
     const Salons = sequelize.define("salons", {
 
-<<<<<<< HEAD
-        // id: {
-        //     type: Sequelize.UUID,
-        //     defaultValue: Sequelize.UUIDV4,
-        //     primaryKey: true
+                type: DataTypes.STRING,
 
-        // },
-=======
+            },
 
->>>>>>> 6fe39a2f59370e91b211e87de825c3bcb2df442e
+            location: {
+                type: DataTypes.STRING,
 
-        name: {
-            type: DataTypes.STRING,
+            },
+            timings: {
+                type: DataTypes.STRING,
+            },
+
 
         },
+        { freezeTableName: true })
 
-        location: {
-            type: DataTypes.STRING,
-
-        },
-        timings: {
-            type: DataTypes.STRING,
-        },
-
-
-    }, { freezeTableName: true })
-
-    return Salons
+return Salons
 
 }
