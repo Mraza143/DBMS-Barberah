@@ -23,7 +23,11 @@ module.exports = (sequelize, DataTypes) => {
 
         average: {
             type: DataTypes.FLOAT,
-        }
+        },
+
+        barber_id: {
+            type: DataTypes.INTEGER
+        },
 
 
     }, { freezeTableName: true })

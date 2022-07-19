@@ -38,6 +38,7 @@ db.users = require('./userModel.js')(sequelize, DataTypes)
 db.salons = require('./salonModel.js')(sequelize, DataTypes)
 db.barbers = require('./barberModel.js')(sequelize, DataTypes)
 db.appointments = require('./appointmentModel.js')(sequelize, DataTypes)
+db.reviews = require('./reviewModel.js')(sequelize, DataTypes)
     //db.reviews = require('./reviewModel.js')(sequelize, DataTypes)
 
 db.sequelize.sync({ force: false })
@@ -49,16 +50,52 @@ db.sequelize.sync({ force: false })
 
 //code for establising relationships 
 
+
+// Salon has many barbers
+// barber belongs to a single salon
 db.salons.hasMany(db.barbers, {
     foreignKey: 'salon_id'
-    //as: 'barber'
+        //as: 'barber'
 })
 
 db.barbers.belongsTo(db.salons)
-//, {
+    //, {
     //foreignKey: 'salon_id',
     //as: 'salon'
-//})
+    //})
+
+
+
+// barber has many appointments
+// appointment belong to a single barber
+db.barbers.hasMany(db.appointments, {
+    foreignKey: 'barber_id'
+})
+
+db.appointments.belongsTo(db.barbers)
+
+
+// user has many appointments      ++++++
+// appointment belong to a single user
+db.users.hasMany(db.appointments, {
+    foreignKey: 'user_id'
+})
+db.appointments.belongsTo(db.users)
+
+
+// barber has many reviews  
+// review belong to a single barber
+db.barbers.hasMany(db.reviews, {
+    foreignKey: 'barber_id'
+})
+db.reviews.belongsTo(db.barbers)
+
+// user has many reviews   ++++++
+// review belong to a single user
+db.users.hasMany(db.reviews, {
+    foreignKey: 'user_id'
+})
+db.reviews.belongsTo(db.users)
 
 
 module.exports = db
