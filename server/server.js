@@ -9,6 +9,10 @@ require('dotenv').config()
 //port
 const PORT = process.env.REACT_APP_PORT || 5000
 
+<<<<<<< HEAD
+=======
+const PORT = process.env.PORT||5000;
+>>>>>>> 6fe39a2f59370e91b211e87de825c3bcb2df442e
 
 //server
 

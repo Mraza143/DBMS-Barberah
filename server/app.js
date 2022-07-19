@@ -36,10 +36,15 @@ app.use(bodyParser.json());
 
 // Routes 
 
-// const router = require('./routes/productRoutes.js')
-// app.use('/api/products', router)
+const router = require('./routes/productRoutes.js')
+app.use('/api/products', router)
 const user = require('./routes/userRoutes.js')
 app.use('/api/users', user)
+<<<<<<< HEAD
+=======
+const salon = require('./routes/salonRoutes.js')
+app.use('/api/salons', salon)
+>>>>>>> 6fe39a2f59370e91b211e87de825c3bcb2df442e
 
 
 module.exports = app
