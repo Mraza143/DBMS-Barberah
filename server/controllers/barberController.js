@@ -2,7 +2,9 @@ const db = require('../models')
 
 // image Upload
 const multer = require('multer')
-const path = require('path')
+const path = require('path');
+const catchAsyncErrors = require('../middleware/catchAsyncErrors');
+const ErrorHandler = require('../utils/errorHandler');
 
 
 // create main Model
@@ -13,16 +15,16 @@ const Barbers = db.barbers;
 
 // main work
 
-// 1. create product
+// 1. create Barber
 
-const addBarber = async (req, res) => {
+const addBarber = async(req, res) => {
 
     let info = {
         name: req.body.name,
         worksAt: req.body.worksAt,
         timings: req.body.timings,
         ratings: req.body.ratings,
-        salon_id : req.body.salon_id
+        salon_id: req.body.salon_id
 
 
     }
@@ -32,6 +34,109 @@ const addBarber = async (req, res) => {
     console.log(barber)
 
 }
+
+// Get All Barbers 
+const getAllBarbers = catchAsyncErrors(async(req, res, next) => {
+    const barbers = await Barbers.findAll({})
+    res.status(200).json({
+        success: true,
+        barbers
+    })
+})
+
+
+// Get Single Barber By Id
+const getSingleBarber = catchAsyncErrors(async(req, res, next) => {
+
+    let id = req.params.id
+    const barber = await Barbers.findOne({ where: { id: id } })
+    res.status(200).json({
+        success: true,
+        barber
+    })
+
+})
+
+
+// Update Ratings Of Barber
+const updateRatingsOfBarber = catchAsyncErrors(async(req, res, next) => {
+
+    let id = req.params.id
+    const updatedBarberRatings = await Barbers.update(req.body, { where: { id: id } })
+
+    res.status(200).json({
+        success: true,
+        message: "Barber Ratings Updated SuccessFully",
+        updatedBarberRatings
+    })
+
+
+})
+
+// Get Barbers By Location
+const getBarbersByLocation = catchAsyncErrors(async(req, res, next) => {
+
+    let worksAt = req.params.name
+    const barbers = await Barbers.findOne({ where: { worksAt: worksAt } })
+    res.status(200).json({
+        success: true,
+        barbers
+    })
+
+})
+
+// Get Barbers By Url
+
+// Images method will determine this function
+
+
+
+
+
+
+
+// Update Barber (Admin)
+const updateBarber = catchAsyncErrors(async(req, res, next) => {
+
+    // Images Code Will Be done later
+
+    let id = req.params.id
+    const barber = await Barbers.update(req.body, { where: { id: id } })
+
+    if (!barber) return next(new ErrorHandler("Barber not Found with this Id", 400))
+
+    res.status(200).json({
+        success: true,
+        message: "Barber Updated Successfully",
+        barber
+    })
+
+})
+
+// Delete Barber (Admin)
+const deleteBarber = catchAsyncErrors(async(req, res, next) => {
+
+    // Images Code Will Be done later
+
+    let id = req.params.id
+    const barber = await Barbers.destroy(req.body, { where: { id: id } })
+
+    if (!barber) return next(new ErrorHandler("Barber not Found with this Id", 400))
+
+    res.status(200).json({
+        success: true,
+        message: "Barber Deleted Successfully",
+        barber
+    })
+
+})
+
+
+
+
+
+
+
 
 
 
@@ -143,7 +248,14 @@ const storage = multer.diskStorage({
 
 
 module.exports = {
-    addBarber
+    addBarber,
+    getAllBarbers,
+    getSingleBarber,
+    updateRatingsOfBarber,
+    getBarbersByLocation,
+    updateBarber,
+    deleteBarber
 
-    
+
+
 }
