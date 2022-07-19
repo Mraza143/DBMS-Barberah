@@ -23,13 +23,15 @@ const getAppointments = catchAsyncErrors(async(req, res, next) => {
 
 const getAppointmentOfASpecificBarber = catchAsyncErrors(async(req, res, next) => {
 
-    const appointment = await Appointments.findOne({
+    const appointments = await Appointments.findOne({
         where: { barberName: req.params.name, salonName: req.params.sname }
+        // where: { id: req.params.id }
     })
+
 
     res.status(200).json({
         success: true,
-        appointment
+        appointments
     })
 
 })
@@ -56,8 +58,9 @@ const setAppointment = catchAsyncErrors(async(req, res, next) => {
 
 const deleteAppointment = catchAsyncErrors(async(req, res, next) => {
 
+    let id = req.params.id
     const appointment = await Appointments.destroy({
-        where: { id: req.params.id }
+        where: { id: id }
     })
 
     if (!appointment) return next(new ErrorHandler('Appointment Not Found', 400))
@@ -72,8 +75,9 @@ const deleteAppointment = catchAsyncErrors(async(req, res, next) => {
 
 const updateAppointment = catchAsyncErrors(async(req, res, next) => {
 
+    let id = req.params.id
     const appointment = await Appointments.update(req.body, {
-        where: { id: req.params.id }
+        where: { id: id }
     })
 
 

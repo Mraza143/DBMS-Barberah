@@ -16,7 +16,4 @@ router.put('/:id', appointmentController.updateAppointment)
 
 
 
-
-
-
 module.exports = router

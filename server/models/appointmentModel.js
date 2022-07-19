@@ -29,13 +29,13 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
 
-        barber_id: {
-            type: DataTypes.INTEGER
-        },
+        // barber_id: {
+        //     type: DataTypes.INTEGER
+        // },
 
-        user_id: {
-            type: DataTypes.INTEGER
-        }
+        // user_id: {
+        //     type: DataTypes.INTEGER
+        // }
 
 
     }, { freezeTableName: true })
