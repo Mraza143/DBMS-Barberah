@@ -8,6 +8,7 @@ const path = require('path')
 // create main Model
 const Product = db.products
 const Salons = db.salons
+const Barbers= db.barbers;
 const Review = db.reviews
 
 // main work
@@ -26,6 +27,27 @@ const addSalon = async (req, res) => {
     const salon = await Salons.create(info)
     res.status(200).send(salon)
     console.log(salon)
+
+}
+
+const getAllSalons = async (req, res) => {
+
+    let salons = await Salons.findAll({})
+    res.status(200).send(salons)
+
+}
+
+const getSalonBarbers = async (req, res) => {
+    const id = req.params.id
+    const data = await Salons.findOne({
+        include: [{
+            model: Barbers,
+            as: 'barbers'
+        }],
+        where: { id: id }
+    })
+
+    res.status(200).send(data)
 
 }
 
@@ -139,7 +161,9 @@ const storage = multer.diskStorage({
 
 
 module.exports = {
-    addSalon
+    addSalon,
+    getSalonBarbers,
+    getAllSalons
 
     
 }
