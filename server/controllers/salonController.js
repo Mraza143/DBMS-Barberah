@@ -18,6 +18,7 @@ const Review = db.reviews
 const addSalon = async (req, res) => {
 
     let info = {
+        image : req.file.path,
         name: req.body.name,
         timings: req.body.timings,
         location: req.body.location,
@@ -51,6 +52,30 @@ const getSalonBarbers = async (req, res) => {
 
 }
 
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'server/Images')
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + path.extname(file.originalname))
+    }
+})
+
+const upload = multer({
+    storage: storage,
+    limits: { fileSize: '1000000' },
+    fileFilter: (req, file, cb) => {
+        const fileTypes = /jpeg|jpg|png|gif/
+        const mimeType = fileTypes.test(file.mimetype)  
+        const extname = fileTypes.test(path.extname(file.originalname))
+
+        if(mimeType && extname) {
+            return cb(null, true)
+        }
+        cb('Give proper files formate to upload')
+    }
+}).single('image')
 
 
 // 2. get all products
@@ -163,7 +188,8 @@ const storage = multer.diskStorage({
 module.exports = {
     addSalon,
     getSalonBarbers,
-    getAllSalons
+    getAllSalons,
+    upload
 
     
 }

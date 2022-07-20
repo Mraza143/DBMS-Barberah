@@ -28,6 +28,7 @@ app.use(cookieParser());
 //app.use(fileUpload())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json());
+app.use('/Images',express.static('./Images'));
 
 
 
