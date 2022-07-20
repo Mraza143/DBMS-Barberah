@@ -12,6 +12,7 @@ const ErrorHandler = require('../utils/errorHandler');
 //const Salons = db.salons
 //const Review = db.reviews
 const Barbers = db.barbers;
+const Reviews = db.reviews;
 
 // main work
 
@@ -24,7 +25,7 @@ const addBarber = async(req, res) => {
         worksAt: req.body.worksAt,
         timings: req.body.timings,
         ratings: req.body.ratings,
-        salon_id: req.body.salon_id
+        salonId: req.body.salon_id
 
 
     }
@@ -84,6 +85,20 @@ const getBarbersByLocation = catchAsyncErrors(async(req, res, next) => {
     })
 
 })
+
+const getBarberReviews = async (req, res) => {
+    const id = req.params.id
+    const data = await Barbers.findOne({
+        include: [{
+            model: Reviews,
+            as: 'reviews'
+        }],
+        where: { id: id }
+    })
+
+    res.status(200).send(data)
+
+}
 
 // Get Barbers By Url
 
@@ -254,7 +269,8 @@ module.exports = {
     updateRatingsOfBarber,
     getBarbersByLocation,
     updateBarber,
-    deleteBarber
+    deleteBarber,
+    getBarberReviews
 
 
 

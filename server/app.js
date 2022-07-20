@@ -41,12 +41,14 @@ const user = require('./routes/userRoutes.js')
 const salon = require('./routes/salonRoutes.js')
 const barber = require('./routes/barberRoutes.js')
 const appointment = require('./routes/appointmentRoutes.js')
+const review = require('./routes/reviewRoutes.js')
 
 app.use('/api/products', product)
 app.use('/api/users', user)
 app.use('/api/salons', salon)
 app.use('/api/barbers', barber)
 app.use('/api/appointments', appointment)
+app.use('/api/reviews' , review)
 
 
 

@@ -8,7 +8,8 @@ const jwt = require("jsonwebtoken")
 
 
 // create main Model
-const User = db.users;
+const Users = db.users;
+const Appointments = db.appointments;
 //PORT = 5000;
 
 //const JWT_SECRET="makfi09q39r1q8nkg0fafonla";
@@ -28,7 +29,7 @@ const registerUser = catchAsyncErrors(async(req, res, next) => {
     const hashPassword = await bcrypt.hash(password, salt);
 
 
-    const user = await User.create({
+    const user = await Users.create({
         name,
         email,
         password: hashPassword,
@@ -62,7 +63,7 @@ const loginUser = catchAsyncErrors(async(req, res, next) => {
         return next(new ErrorHandler('Please Enter Email and Password', 400))
     }
 
-    const user = await User.findAll({
+    const user = await Users.findAll({
             where: { email: email }
         })
         // .select('+password')
@@ -103,6 +104,21 @@ const logoutUser = catchAsyncErrors(async(req, res, next) => {
 
 })
 
+const getUserAppointments = async (req, res) => {
+    const id = req.params.id
+    const data = await Users.findOne({
+        include: [{
+            model: Appointments,
+            as: 'appointments'
+        }],
+        where: { id: id }
+    })
+
+    res.status(200).send(data)
+
+}
+
+
 
 
 
@@ -116,4 +132,5 @@ module.exports = {
     registerUser,
     loginUser,
     logoutUser,
+    getUserAppointments
 }

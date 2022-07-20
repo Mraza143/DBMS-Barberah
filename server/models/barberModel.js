@@ -24,10 +24,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.FLOAT,
             allowNull: false
         },
-        salon_id:{
-            type: DataTypes.INTEGER,
 
-        }
         
 
 

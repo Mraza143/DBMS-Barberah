@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     const Reviews = sequelize.define("reviews", {
 
 
-        barberId: {
+        barberName: {
             type: DataTypes.STRING,
         },
 
@@ -25,9 +25,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.FLOAT,
         },
 
-        barber_id: {
-            type: DataTypes.INTEGER
-        },
+
 
 
     }, { freezeTableName: true })

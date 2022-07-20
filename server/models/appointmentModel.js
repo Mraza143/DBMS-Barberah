@@ -33,9 +33,6 @@ module.exports = (sequelize, DataTypes) => {
         //     type: DataTypes.INTEGER
         // },
 
-        // user_id: {
-        //     type: DataTypes.INTEGER
-        // }
 
 
     }, { freezeTableName: true })

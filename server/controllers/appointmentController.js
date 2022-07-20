@@ -41,9 +41,10 @@ const setAppointment = catchAsyncErrors(async(req, res, next) => {
     let info = {
         customerName: req.body.customerName,
         salonName: req.body.salonName,
-        barberName: req.body.name,
+        barberName: req.body.barberName,
         price: req.body.price,
         date: req.body.date,
+        userId : req.body.user_id
     }
 
     const appointment = await Appointments.create(info)
