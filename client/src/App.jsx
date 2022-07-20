@@ -1,12 +1,41 @@
-import { useState } from 'react'
+import React from 'react'
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
+import {Home, Welcome, Footer, Services, Salons, SpecificSalon} from "./components"
+import BarberProfile from "./components/BarberProfile"
+import Navbar from "./components/Navbar"
+import Login from "./components/Login"
+import Register from "./components/Register"
 
-
-const App=()=>{
+const App = () => {
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+    <Router>
+      {/* <div className='gradient-bg-welcome'>
+        <Navbar />
+      </div>
+
+<Switch>
+
+  <Route exact path="/"> <Home/>  </Route>
+  <Route path="/login" >  <Login/>  </Route>
+  <Route path="/register"> <Register/> </Route>
+
+
+<Route  path="/salons" > <Salons total={10} /> </Route>
+
+<Route path="/specificSalon/:id/:name" > <SpecificSalon /> </Route>
+<Route path="/specificBarber/:id/:name/:sname" > <BarberProfile/>  </Route>
+
+
+
+
+
+
+</Switch>
+<Footer/> */}
+
+
+    </Router>
   )
 }
 
-export default App;
+export default App
