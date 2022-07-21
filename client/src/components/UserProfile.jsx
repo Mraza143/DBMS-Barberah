@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { MdOutlineCancel } from "react-icons/md";
 import profilePng from '/images/Profile.png'
 import DashboardIcon from "@material-ui/icons/Dashboard";
-import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import "./userProfile.css";
 
 import {logout} from "../redux/actions/userAction"
@@ -16,6 +15,7 @@ const UserProfile = () => {
   const alert=useAlert()
   const [isClicked, setIsClicked] = useState(true);
   const { user } = useSelector((state) => state.user)
+  console.log(user)
 
   const handleClick_LogoutUser = () => {
     setIsClicked(!isClicked);
@@ -43,10 +43,7 @@ const UserProfile = () => {
               className="text-2xl p-3 hover:drop-shadow-xl bg-light-gray border-[50%]"
               type="button"
               icon={<MdOutlineCancel />}
-              // bgHoverColor="light-gray"
-              // size="2xl"
-              // borderRadius="50%"
-            >
+              >
               <MdOutlineCancel />
             </button>
             </div>
@@ -55,7 +52,7 @@ const UserProfile = () => {
             <img
               className="rounded-full h-20 w-20"
               // src={profilePng}
-              src={user?.avatar?.url}
+              src={`http://localhost:3000/${user?.image}`}
               // src={link }
               alt="user-profile"
             />

@@ -7,8 +7,8 @@ import Loader from './Loader/Loader'
 import { useAlert } from 'react-alert'
 import { clearErrors, register } from '../redux/actions/userAction'
 import { useHistory } from 'react-router-dom'
-import Select from 'react-select'
-import 'react-dropdown/style.css';
+// import Select from 'react-select'
+// import 'react-dropdown/style.css';
 import ProfilePic from  '/images/Profile.png'
 
 const Register = () => {
@@ -25,38 +25,39 @@ const Register = () => {
   })
 
   const { name, email, password, role } = user
-  const [avatar, setAvatar] = useState(ProfilePic)
-  const [avatarPreview, setAvatarPreview] = useState(ProfilePic)
+  const [image, setImage] = useState(ProfilePic)
+  const [imagePreview, setImagePreview] = useState(ProfilePic)
 
-  const optionss = [
-    'user', 'salonowner'
-  ];
-  const defaultOptions = optionss[0];
+//   const optionss = [
+//     'user', 'salonowner'
+//   ];
+//   const defaultOptions = optionss[0];
   //   -------------------------
   const registerSubmit = (e) => {
     e.preventDefault()
     const myForm = new FormData()
+    myForm.set('image', image)
     myForm.set('name', name)
     myForm.set('email', email)
     myForm.set('password', password)
     myForm.set('role', role)
-    myForm.set('avatar', avatar)
     dispatch(register(myForm)) // userData is myForm in userAction
   }
   //   -------------------------
   const registerDataChange = (e) => {
-    if (e.target.name === 'avatar') {
-      const reader = new FileReader()
-      reader.onload = () => {
-        if (reader.readyState === 2) {
-          setAvatarPreview(reader.result)
-          setAvatar(reader.result)
-        }
-      }
-      reader.readAsDataURL(e.target.files[0])
-    } else {
+    // if (e.target.name === 'avatar') {
+    //   const reader = new FileReader()
+    //   reader.onload = () => {
+    //     if (reader.readyState === 2) {
+    //       setAvatarPreview(reader.result)
+    //       setAvatar(reader.result)
+    //     }
+    //   }
+    //   reader.readAsDataURL(e.target.files[0])
+    // } 
+    // else {
       setUser({ ...user, [e.target.name]: e.target.value })
-    }
+    // }
   }
   // ----------------
   // -----------------
@@ -150,7 +151,7 @@ const Register = () => {
 <div className="flex items-center  mb-6 py-2 px-3 rounded-2xl pl-0 pr-0">
   
             <lable>Type: &nbsp;</lable>
-            <input type="radio" name='role' value="user" onChange={registerDataChange} />
+            <input type="radio" name='role' value="customer" onChange={registerDataChange} />
             <lable>&nbsp;Customer &nbsp;</lable>
             
             <input type="radio" name='role' value="salonowner" onChange={registerDataChange} />
@@ -162,16 +163,20 @@ const Register = () => {
 
                   <div className="flex items-center border-2 mb-8 py-3 px-3 rounded-2xl ">
                     <img
-                      src={avatarPreview}
+                      src={imagePreview}
+                      name="imagePreview"
+                    //   onChange={registerDataChange}
+                      onChange={(e)=>setImagePreview(e.target.files[0])}
                       alt="Avatar Preview"
                       className="w-12 mr-2 h-12 rounded-full"
                     />
                     <input
                       className="w-full outline-none border-2 bg-indigo-100 p-1 text-sm "
                       type="file"
-                      name="avatar"
+                      name="image"
                       accept="image/*"
-                      onChange={registerDataChange}
+                    //   onChange={registerDataChange}
+                    onChange={(e)=>setImage(e.target.files[0])}
                     />
                   </div>
 

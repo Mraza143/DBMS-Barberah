@@ -1,14 +1,10 @@
-const { Sequelize } = require(".")
-const bcrypt = require("bcrypt")
-const jwt = require("jsonwebtoken")
-    // const uuid = require('uuid');
-
-// const { Sequelize } = require("sequelize")
-
 module.exports = (sequelize, DataTypes) => {
 
     const Users = sequelize.define("users", {
 
+        image: {
+            type: DataTypes.STRING,
+        },
 
         name: {
             type: DataTypes.STRING
@@ -32,16 +28,3 @@ module.exports = (sequelize, DataTypes) => {
     return Users
 
 }
-
-
-
-
-// Generating JWT Token
-/*Users.getJWTToken = function() {
-    return jwt.sign({ id: this.id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES })
-}
-
-// Comparing Password
-Users.comparePassword = async function(enteredPassword) {
-    return await bcrypt.compare(enteredPassword, this.password)
-}*/

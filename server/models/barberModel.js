@@ -4,6 +4,9 @@ module.exports = (sequelize, DataTypes) => {
 
     const Barbers = sequelize.define("barbers", {
 
+        image: {
+            type: DataTypes.STRING,
+        },
 
         name: {
             type: DataTypes.STRING,
@@ -25,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
 
-        
+
 
 
     }, { freezeTableName: true })

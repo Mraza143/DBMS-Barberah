@@ -8,17 +8,17 @@ const path = require('path')
 // create main Model
 const Product = db.products
 const Salons = db.salons
-const Barbers= db.barbers;
+const Barbers = db.barbers;
 const Review = db.reviews
 
 // main work
 
 // 1. create product
 
-const addSalon = async (req, res) => {
+const addSalon = async(req, res) => {
 
     let info = {
-        image : req.file.path,
+        image: req.file.path,
         name: req.body.name,
         timings: req.body.timings,
         location: req.body.location,
@@ -31,14 +31,14 @@ const addSalon = async (req, res) => {
 
 }
 
-const getAllSalons = async (req, res) => {
+const getAllSalons = async(req, res) => {
 
     let salons = await Salons.findAll({})
     res.status(200).send(salons)
 
 }
 
-const getSalonBarbers = async (req, res) => {
+const getSalonBarbers = async(req, res) => {
     const id = req.params.id
     const data = await Salons.findOne({
         include: [{
@@ -53,31 +53,31 @@ const getSalonBarbers = async (req, res) => {
 }
 
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'server/Images')
-    },
-    filename: (req, file, cb) => {
-        cb(null, Date.now() + path.extname(file.originalname))
-    }
-})
+// const storage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//         cb(null, 'server/Images')
+//     },
+//     filename: (req, file, cb) => {
+//         cb(null, Date.now() + path.extname(file.originalname))
+//     }
+// })
 
-const upload = multer({
-    storage: storage,
-    limits: { fileSize: '1000000' },
-    fileFilter: (req, file, cb) => {
-        const fileTypes = /jpeg|jpg|png|gif/
-        const mimeType = fileTypes.test(file.mimetype)  
-        const extname = fileTypes.test(path.extname(file.originalname))
+// const upload = multer({
+//     storage: storage,
+//     limits: { fileSize: '1000000' },
+//     fileFilter: (req, file, cb) => {
+//         const fileTypes = /jpeg|jpg|png|gif/
+//         const mimeType = fileTypes.test(file.mimetype)  
+//         const extname = fileTypes.test(path.extname(file.originalname))
 
-        if(mimeType && extname) {
-            return cb(null, true)
-        }
-        cb('Give proper files formate to upload')
-    }
-}).single('image')
+//         if(mimeType && extname) {
+//             return cb(null, true)
+//         }
+//         cb('Give proper files formate to upload')
+//     }
+// }).single('image')
 
-
+// -----------------
 // 2. get all products
 
 /*const getAllProducts = async (req, res) => {
@@ -189,7 +189,6 @@ module.exports = {
     addSalon,
     getSalonBarbers,
     getAllSalons,
-    upload
 
-    
+
 }

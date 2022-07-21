@@ -30,6 +30,7 @@ const registerUser = catchAsyncErrors(async(req, res, next) => {
 
 
     const user = await Users.create({
+        image: req.file.path,
         name,
         email,
         password: hashPassword,
@@ -104,7 +105,7 @@ const logoutUser = catchAsyncErrors(async(req, res, next) => {
 
 })
 
-const getUserAppointments = async (req, res) => {
+const getUserAppointments = async(req, res) => {
     const id = req.params.id
     const data = await Users.findOne({
         include: [{
@@ -117,6 +118,32 @@ const getUserAppointments = async (req, res) => {
     res.status(200).send(data)
 
 }
+
+
+// --------------------------
+// const storage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//         cb(null, 'server/Images')
+//     },
+//     filename: (req, file, cb) => {
+//         cb(null, Date.now() + path.extname(file.originalname))
+//     }
+// })
+
+// const upload = multer({
+//     storage: storage,
+//     limits: { fileSize: '1000000' },
+//     fileFilter: (req, file, cb) => {
+//         const fileTypes = /jpeg|jpg|png|gif/
+//         const mimeType = fileTypes.test(file.mimetype)
+//         const extname = fileTypes.test(path.extname(file.originalname))
+
+//         if (mimeType && extname) {
+//             return cb(null, true)
+//         }
+//         cb('Give proper files formate to upload')
+//     }
+// }).single('image')
 
 
 
@@ -132,5 +159,5 @@ module.exports = {
     registerUser,
     loginUser,
     logoutUser,
-    getUserAppointments
+    getUserAppointments,
 }

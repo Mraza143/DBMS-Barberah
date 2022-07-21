@@ -17,7 +17,7 @@ const NavBarItem = ({ title,link, classprops }) => (
 
 
 const Navbar = () => {
-  const { user ,error, loading, isAuthenticated } = useSelector((state) => state.user)
+  const { user, isAuthenticated } = useSelector((state) => state.user)
 
 
   const [link , setLink]=useState("")
@@ -72,7 +72,7 @@ const Navbar = () => {
         <img
           className="rounded-full w-[2.5rem] h-[2.5rem] text-white text-sm"
           // src={user.avatar.url? user.avatar.url : profilePng}
-          src={user?.avatar?.url}
+          src={user?.image}
           alt="user-profile"
         />
         <p className="flex items-center justify-center">
