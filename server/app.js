@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
-    //const fileUpload = require('express-fileupload')
+const fileUpload = require('express-fileupload')
 var path = require('path');
 var cors = require('cors')
 const errorMiddleware = require('./middleware/error')
@@ -25,10 +25,10 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json())
 app.use(cookieParser());
-//app.use(fileUpload())
+app.use(fileUpload())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json());
-app.use('/Images',express.static('./Images'));
+// app.use('/Images', express.static('./Images'));
 
 
 
@@ -49,7 +49,7 @@ app.use('/api/users', user)
 app.use('/api/salons', salon)
 app.use('/api/barbers', barber)
 app.use('/api/appointments', appointment)
-app.use('/api/reviews' , review)
+app.use('/api/reviews', review)
 
 
 

@@ -52,7 +52,7 @@ const UserProfile = () => {
             <img
               className="rounded-full h-20 w-20"
               // src={profilePng}
-              src={`http://localhost:3000/${user?.image}`}
+              src={user?.image}
               // src={link }
               alt="user-profile"
             />

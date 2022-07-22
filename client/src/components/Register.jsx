@@ -7,15 +7,14 @@ import Loader from './Loader/Loader'
 import { useAlert } from 'react-alert'
 import { clearErrors, register } from '../redux/actions/userAction'
 import { useHistory } from 'react-router-dom'
-// import Select from 'react-select'
-// import 'react-dropdown/style.css';
 import ProfilePic from '/images/Profile.png'
 
 // ----------------------------------------
-// import { storage } from "../../firebase";
-import { storage } from '../firebase'
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
-import { v4 } from 'uuid'
+// import { storage } from '../firebase'
+// import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
+// import { v4 } from 'uuid'
+
+
 
 const Register = () => {
   const dispatch = useDispatch()
@@ -42,59 +41,45 @@ const Register = () => {
   const registerSubmit = (e) => {
     e.preventDefault()
 
-    // --------------------------------------
-
-    const imageRef = ref(storage, `images/${image.name + v4()}`)
-    // console.log("hi");
-    uploadBytes(imageRef, image).then(() => {
-      getDownloadURL(imageRef).then((url) => {
-        console.log("Url "+url)
-        // setURL(url);
-        // uploadImage(url);
-
-        // setImage(url)
-
-        console.log(name, email, password, role, image)
-
-
+   
         const myForm = new FormData()
         myForm.set('name', name)
         myForm.set('email', email)
         myForm.set('password', password)
         myForm.set('role', role)
-        myForm.set('image', url)
+        myForm.set('image', image)
         dispatch(register(myForm)) // userData is myForm in userAction
-      })
-    })
+      // })
+    // })
 
-    // -------------------------------
   }
   //   -------------------------
   const registerDataChange = (e) => {
-    // if (e.target.name === 'avatar') {
-    //   const reader = new FileReader()
-    //   reader.onload = () => {
-    //     if (reader.readyState === 2) {
-    //       setAvatarPreview(reader.result)
-    //       setAvatar(reader.result)
-    //     }
-    //   }
-    //   reader.readAsDataURL(e.target.files[0])
-    // }
-    // else {
+    if (e.target.name === 'image') {
+      const reader = new FileReader()
+      reader.onload = () => {
+        if (reader.readyState === 2) {
+          setImagePreview(reader.result)
+          setImage(reader.result)
+        }
+      }
+      reader.readAsDataURL(e.target.files[0])
+    }
+    else {
     setUser({ ...user, [e.target.name]: e.target.value })
-    // }
+    }
   }
   // ----------------
 
-  const handleFileChange = (e) => {
-    // console.log(e.target.files[0]);
-    // console.log("hoo"+ i)
-    if (e.target.files[0]) {
-      setImage(e.target.files[0]);
-      console.log("Image "+ image)
-    }
-  };
+  // const handleFileChange = (e) => {
+  //   // console.log(e.target.files[0]);
+  //   // console.log("hoo"+ i)
+  //   if (e.target.files[0]) {
+  //     setImage(e.target.files[0]);
+  //     setImagePreview(e.target.files[0])
+  //     console.log("Image "+ image)
+  //   }
+  // };
 
   // -----------------
   useEffect(() => {
@@ -210,8 +195,8 @@ const Register = () => {
                     <img
                       src={imagePreview}
                       name="imagePreview"
-                      //   onChange={registerDataChange}
-                      onChange={(e) => setImagePreview(e.target.files[0])}
+                
+                      onChange={registerDataChange}
                       alt="Avatar Preview"
                       className="w-12 mr-2 h-12 rounded-full"
                     />
@@ -220,8 +205,8 @@ const Register = () => {
                       type="file"
                       name="image"
                       accept="image/*"
-                      //   onChange={registerDataChange}
-                      onChange={handleFileChange}
+                
+                      onChange={registerDataChange}
                     />
                   </div>
 

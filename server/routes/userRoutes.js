@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const userController = require("../controllers/userController")
-const imageUploader = require("../utils/imageUploader")
+    // const imageUploader = require("../utils/imageUploader")
 
 
 

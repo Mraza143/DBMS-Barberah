@@ -4,6 +4,7 @@ const ErrorHandler = require("../utils/errorHandler")
 const catchAsyncErrors = require("../middleware/catchAsyncErrors")
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
+const cloudinary = require("cloudinary")
 
 
 
@@ -23,7 +24,13 @@ const Appointments = db.appointments;
 // Register User
 const registerUser = catchAsyncErrors(async(req, res, next) => {
 
-    const { name, email, password, role, image } = req.body
+    const myCloud = await cloudinary.v2.uploader.upload(req.body.image, {
+        folder: 'dbms_userimages',
+        width: 150,
+        crop: 'scale',
+    })
+
+    const { name, email, password, role } = req.body
 
     const salt = await bcrypt.genSalt()
     const hashPassword = await bcrypt.hash(password, salt);
@@ -33,9 +40,9 @@ const registerUser = catchAsyncErrors(async(req, res, next) => {
         name,
         email,
         password: hashPassword,
-        // password,
+        password,
         role,
-        image,
+        image: myCloud.secure_url
     })
 
     const userId = user.id
@@ -46,7 +53,7 @@ const registerUser = catchAsyncErrors(async(req, res, next) => {
         httpOnly: true,
     }
 
-    res.status(200).cookie('token', accessToken, cookieOptions).json({
+    res.status(200).cookie('token', cookieOptions).json({
         success: true,
         user,
         accessToken
