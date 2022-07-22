@@ -9,7 +9,13 @@ import { clearErrors, register } from '../redux/actions/userAction'
 import { useHistory } from 'react-router-dom'
 // import Select from 'react-select'
 // import 'react-dropdown/style.css';
-import ProfilePic from  '/images/Profile.png'
+import ProfilePic from '/images/Profile.png'
+
+// ----------------------------------------
+// import { storage } from "../../firebase";
+import { storage } from '../firebase'
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
+import { v4 } from 'uuid'
 
 const Register = () => {
   const dispatch = useDispatch()
@@ -21,27 +27,47 @@ const Register = () => {
     name: '',
     email: '',
     password: '',
-    role:'',
+    role: '',
   })
 
   const { name, email, password, role } = user
   const [image, setImage] = useState(ProfilePic)
   const [imagePreview, setImagePreview] = useState(ProfilePic)
 
-//   const optionss = [
-//     'user', 'salonowner'
-//   ];
-//   const defaultOptions = optionss[0];
+  //   const optionss = [
+  //     'user', 'salonowner'
+  //   ];
+  //   const defaultOptions = optionss[0];
   //   -------------------------
   const registerSubmit = (e) => {
     e.preventDefault()
-    const myForm = new FormData()
-    myForm.set('image', image)
-    myForm.set('name', name)
-    myForm.set('email', email)
-    myForm.set('password', password)
-    myForm.set('role', role)
-    dispatch(register(myForm)) // userData is myForm in userAction
+
+    // --------------------------------------
+
+    const imageRef = ref(storage, `images/${image.name + v4()}`)
+    // console.log("hi");
+    uploadBytes(imageRef, image).then(() => {
+      getDownloadURL(imageRef).then((url) => {
+        console.log("Url "+url)
+        // setURL(url);
+        // uploadImage(url);
+
+        // setImage(url)
+
+        console.log(name, email, password, role, image)
+
+
+        const myForm = new FormData()
+        myForm.set('name', name)
+        myForm.set('email', email)
+        myForm.set('password', password)
+        myForm.set('role', role)
+        myForm.set('image', url)
+        dispatch(register(myForm)) // userData is myForm in userAction
+      })
+    })
+
+    // -------------------------------
   }
   //   -------------------------
   const registerDataChange = (e) => {
@@ -54,12 +80,22 @@ const Register = () => {
     //     }
     //   }
     //   reader.readAsDataURL(e.target.files[0])
-    // } 
+    // }
     // else {
-      setUser({ ...user, [e.target.name]: e.target.value })
+    setUser({ ...user, [e.target.name]: e.target.value })
     // }
   }
   // ----------------
+
+  const handleFileChange = (e) => {
+    // console.log(e.target.files[0]);
+    // console.log("hoo"+ i)
+    if (e.target.files[0]) {
+      setImage(e.target.files[0]);
+      console.log("Image "+ image)
+    }
+  };
+
   // -----------------
   useEffect(() => {
     if (error) {
@@ -88,7 +124,8 @@ const Register = () => {
                   Be Confident, Be Brave, Be Yourself.
                 </h1>
                 <p className="text-white mt-1">
-                  Cut the phone tag. Discover and book Beauty & Wellness professionals near you instantly anytime, anywhere.
+                  Cut the phone tag. Discover and book Beauty & Wellness
+                  professionals near you instantly anytime, anywhere.
                 </p>
               </div>
             </div>
@@ -146,16 +183,24 @@ const Register = () => {
                   </div>
 
                   {/* --------------- */}
-                
 
-<div className="flex items-center  mb-6 py-2 px-3 rounded-2xl pl-0 pr-0">
-  
-            <lable>Type: &nbsp;</lable>
-            <input type="radio" name='role' value="customer" onChange={registerDataChange} />
-            <lable>&nbsp;Customer &nbsp;</lable>
-            
-            <input type="radio" name='role' value="salonowner" onChange={registerDataChange} />
-            <lable>&nbsp;Salon Owner</lable>
+                  <div className="flex items-center  mb-6 py-2 px-3 rounded-2xl pl-0 pr-0">
+                    <lable>Type: &nbsp;</lable>
+                    <input
+                      type="radio"
+                      name="role"
+                      value="customer"
+                      onChange={registerDataChange}
+                    />
+                    <lable>&nbsp;Customer &nbsp;</lable>
+
+                    <input
+                      type="radio"
+                      name="role"
+                      value="salonowner"
+                      onChange={registerDataChange}
+                    />
+                    <lable>&nbsp;Salon Owner</lable>
                   </div>
                   <p>Image: </p>
 
@@ -165,8 +210,8 @@ const Register = () => {
                     <img
                       src={imagePreview}
                       name="imagePreview"
-                    //   onChange={registerDataChange}
-                      onChange={(e)=>setImagePreview(e.target.files[0])}
+                      //   onChange={registerDataChange}
+                      onChange={(e) => setImagePreview(e.target.files[0])}
                       alt="Avatar Preview"
                       className="w-12 mr-2 h-12 rounded-full"
                     />
@@ -175,8 +220,8 @@ const Register = () => {
                       type="file"
                       name="image"
                       accept="image/*"
-                    //   onChange={registerDataChange}
-                    onChange={(e)=>setImage(e.target.files[0])}
+                      //   onChange={registerDataChange}
+                      onChange={handleFileChange}
                     />
                   </div>
 
@@ -187,9 +232,12 @@ const Register = () => {
                     Register
                   </button>
                   <p className="text-center">
-                    Already have an account? 
-                    <a href="login" className="underline hover:text-blue-500 cursor-pointer hover:-translate-y-1 duration-500 transition-all">
-                    &nbsp;Login
+                    Already have an account?
+                    <a
+                      href="login"
+                      className="underline hover:text-blue-500 cursor-pointer hover:-translate-y-1 duration-500 transition-all"
+                    >
+                      &nbsp;Login
                     </a>
                   </p>
                 </form>
@@ -203,4 +251,3 @@ const Register = () => {
 }
 
 export default Register
-

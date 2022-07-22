@@ -23,18 +23,19 @@ const Appointments = db.appointments;
 // Register User
 const registerUser = catchAsyncErrors(async(req, res, next) => {
 
-    const { name, email, password, role } = req.body
+    const { name, email, password, role, image } = req.body
 
     const salt = await bcrypt.genSalt()
     const hashPassword = await bcrypt.hash(password, salt);
 
 
     const user = await Users.create({
-        image: req.file.path,
         name,
         email,
         password: hashPassword,
+        // password,
         role,
+        image,
     })
 
     const userId = user.id
@@ -70,6 +71,7 @@ const loginUser = catchAsyncErrors(async(req, res, next) => {
         // .select('+password')
 
     const userId = user[0].id
+        // const userId = user.id
     const accessToken = jwt.sign({ userId }, "makfi09q39r1q8nkg0fafonla", { expiresIn: "2d" })
 
     if (!user) return next(new ErrorHandler('Invalid Email or Password', 401))
