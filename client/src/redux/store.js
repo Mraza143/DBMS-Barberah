@@ -24,7 +24,7 @@ const reducer = combineReducers({
     appointments: appointmentReducer,
     newAppointment: newAppointmentReducer,
     reviews: reviewsReducer,
-    // average: reviewsAverageReducer,
+    average: reviewsAverageReducer,
     // coordinates: salonCoordinatesReducer,
     // barberRating:  barberRatingsReducer,
     // url : salonUrlReducer,

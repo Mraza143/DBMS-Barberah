@@ -23,8 +23,8 @@ export const getAllReviews = (id) => async(dispatch) => {
 export const getAllReviewsAverage = (id) => async(dispatch) => {
   try {
       dispatch({ type: ALL_REVIEW_AVERAGE_REQUEST })
-      const { data } = await axios.get(`http://localhost:5000/api/reviews/${id}/average`);
-      await axios.put(`http://localhost:5000/api/barbers/ratings/${id}`, data)
+      const { data } = await axios.get(`http://localhost:5000/api/reviews/average/${id}`);
+      //await axios.put(`http://localhost:5000/api/barbers/ratings/${id}`, data)
 
       //const resp = await fetch(`http://localhost:5000/api/appointments/${id}/${name}/${sname}`);
 
@@ -40,7 +40,7 @@ export const getAllReviewsAverage = (id) => async(dispatch) => {
   }
 }
 
-export const createbarberReview = (barberId,customerName, rating,comment) => async (
+export const createbarberReview = (barberName,customerName, rating, comment , barber_id) => async (
     dispatch,
   ) => {
     try {
@@ -48,13 +48,7 @@ export const createbarberReview = (barberId,customerName, rating,comment) => asy
         type: CREATE_REVIEW_REQUEST,
       })
   
-      /*const config = {
-        headers: {
-          'Content-Type': 'application/json'
-        },
-      }*/
-  
-      await axios.post(`http://localhost:5000/api/reviews`, barberId,customerName ,rating,comment)
+      await axios.post(`http://localhost:5000/api/reviews/addReview/${barber_id}`,barberName,customerName ,rating,comment , barber_id)
   
       dispatch({
         type: CREATE_REVIEW_SUCCESS,

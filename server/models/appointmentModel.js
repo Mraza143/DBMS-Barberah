@@ -29,9 +29,6 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
 
-        // barber_id: {
-        //     type: DataTypes.INTEGER
-        // },
 
 
 

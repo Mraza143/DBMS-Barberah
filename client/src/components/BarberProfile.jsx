@@ -46,16 +46,20 @@ const BarberProfile = () => {
   const alert = useAlert()
   const dispatch = useDispatch()
   const [rating, setRating] = useState(0)
-  const [ratings,setRatings]=useState(10);
+  //const [ratings,setRatings]=useState(10);
   const [comment, setComment] = useState('')
   
-  const [barberId,setbarberId] = useState(id)
+  //const [barberId,setbarberId] = useState(id)
   const { user } = useSelector((state) => state.user)
   const { barber } = useSelector((state) => state.barber)
+  //const user_id = user.id;
+
 
   // Appointment States
-  const [customerName, setCustomerName] = useState(user?.name)
+  const [customerName, setCustomerName] = useState(user[0]?.name)
+  const [user_id, setUserId] = useState(user[0]?.id)
   const [barberName, setBarberName]=useState(barber?.name)
+  const [barber_id,setBarberId] = useState(barber?.id)
   const [salonName, setSalonName]=useState(barber?.worksAt)
   const [date, setDate]=useState("")
   const [price,setPrice]=useState(0);
@@ -69,7 +73,8 @@ const BarberProfile = () => {
   
   console.log(appointments)
   const {newAppointment, error:appointmentError, success : appointmentSuccess}=useSelector((state)=>state.newAppointment)
-  //const { average } = useSelector((state) => state.average)
+  const { average } = useSelector((state) => state.average)
+  console.log("average is" + average)
 
   //const {burl} =useSelector((state) => state.burl)
 
@@ -96,10 +101,13 @@ const BarberProfile = () => {
   
     dispatch(createAppointmentForCustomers({
       customerName,
-      name,
+      barberName,
       salonName,
       date,
-      price
+      price,
+      user_id
+      
+
     })
     
     )
@@ -110,9 +118,10 @@ const BarberProfile = () => {
 
     e.preventDefault()
     dispatch(
-      createbarberReview({barberId, customerName,
+      createbarberReview({ barberName, customerName,
         rating,
         comment,
+        barber_id
       })
     )
   }
@@ -146,7 +155,7 @@ const BarberProfile = () => {
     dispatch(getAllReviews(id))
     console.log(id , name ,sname)
    
-    //dispatch(getAllReviewsAverage(id))
+    dispatch(getAllReviewsAverage(id))
     //dispatch(getAllBarbersUrl(id))
     //dispatch(getBarbersAverage(id,ratings))
     //console.log(dispatch(getAllReviewsAverage(id)))
@@ -169,7 +178,7 @@ const BarberProfile = () => {
                 Experience: {barber?.experience} years
               </p>
               <p className=" text-white text-base font-bold ">
-                Ratings: {barber?.ratings} /10
+                Ratings: {average} /10
               </p>
             </div>
             <img

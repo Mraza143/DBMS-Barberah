@@ -4,14 +4,6 @@ const path = require('path');
 const catchAsyncErrors = require('../middleware/catchAsyncErrors');
 const ErrorHandler = require('../utils/errorHandler');
 
-
-
-// create main Model
-const Product = db.products
-const Salons = db.salons
-const Barbers = db.barbers;
-const Reviews = db.reviews
-const Users = db.users
 const Appointments = db.appointments
 
 
