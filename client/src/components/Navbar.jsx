@@ -87,9 +87,6 @@ const Navbar = () => {
       {isClicked && <UserProfile />}
      
 
-
-
-
       {/* ----------------- */}
     </nav>
   );

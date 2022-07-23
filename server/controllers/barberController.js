@@ -5,6 +5,7 @@ const multer = require('multer')
 const path = require('path');
 const catchAsyncErrors = require('../middleware/catchAsyncErrors');
 const ErrorHandler = require('../utils/errorHandler');
+const cloudinary = require("cloudinary")
 
 
 // create main Model
@@ -19,14 +20,19 @@ const Reviews = db.reviews;
 // 1. create Barber
 
 const addBarber = async(req, res) => {
+    const myCloud = await cloudinary.v2.uploader.upload(req.body.image, {
+        folder: 'dbms_barberimages',
+        width: 150,
+        crop: 'scale',
+    })
 
     let info = {
         name: req.body.name,
         worksAt: req.body.worksAt,
         timings: req.body.timings,
         ratings: req.body.ratings,
-        salonId: req.body.salon_id
-
+        salonId: req.body.salon_id,
+        image:myCloud.secure_url
 
     }
 
@@ -78,7 +84,7 @@ const updateRatingsOfBarber = catchAsyncErrors(async(req, res, next) => {
 const getBarbersByLocation = catchAsyncErrors(async(req, res, next) => {
 
     let worksAt = req.params.name
-    const barbers = await Barbers.findOne({ where: { worksAt: worksAt } })
+    const barbers = await Barbers.findAll({ where: { worksAt: worksAt } })
     res.status(200).json({
         success: true,
         barbers

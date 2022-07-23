@@ -4,7 +4,7 @@ import { useState ,useEffect} from "react";
 // import {GoogleMap , withScriptjs , withGoogleMap} from "react-google-maps";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-// import { getAllBarberss } from "../redux/actions/barberAction";
+import { getAllBarberss } from "../redux/actions/barberAction";
 // import { getAllSalonDetails ,getAllSalonCoordinates, getAllSalonUrl } from "../redux/actions/salonDetailsAction";
 import { getAllSalonDetails } from "../redux/actions/salonDetailsAction";
 
@@ -59,14 +59,16 @@ const ShopCard1 = (props)=> {
 
 const SpecificSalon = () => {
     const {id , name} = useParams(); 
+    console.log("name os " + name)
 
     const dispatch = useDispatch();
 	  const {salon} = useSelector((state) => state.salon);
+    const {barbers} = useSelector((state) => state.barbers);
     // const {salon :newSalon}=useSelector((state)=>state.newSalon)
     // console.log("Salon only : "+salon)
     // console.log("Salonsssss only : "+salons)
 
-    // const {barbers} = useSelector((state) => state.barbers);
+    // 
     // const {coordinates}=useSelector((state)=>state.coordinates)
     // const {url}=useSelector((state)=>state.url)
 
@@ -85,10 +87,11 @@ const SpecificSalon = () => {
 
     useEffect(()=>{
       dispatch(getAllSalonDetails(id));
+      dispatch(getAllBarberss(name));
     //   dispatch(getAllSalonCoordinates(id));
     //   dispatch(getAllSalonUrl(id));
 
-    //   dispatch(getAllBarberss(name));
+
       //setImagePath(salon.imagePath.url)
 
 
@@ -124,14 +127,14 @@ const SpecificSalon = () => {
               <p className="text-[#37c7da] font-bold">{salon.name}</p>
             </div>
 
-            {/* <div className="mt-12 flex flex-wrap justify-center items-center ">
+             <div className="mt-12 flex flex-wrap justify-center items-center ">
             {barbers.map((barber, i) => (
-            <ShopCard1 key={i} id={barber._id} ratings={barber.ratings} images={barber.images[0].url}  name= {barber.name}  experience={barber.experience} sname={sname} />))}
+            <ShopCard1 key={i} id={barber.id} ratings={barber.ratings} image={barber.image}  name= {barber.name}  experience={barber.experience} sname={sname} />))}
             </div>
 
-            <div style={{width  :'70vw', height: '50vh'}} className=" mt-20 justify-center items-center">
+            {/*<div style={{width  :'70vw', height: '50vh'}} className=" mt-20 justify-center items-center">
               <TheMap latt={coordinates["latitude"]} langg={coordinates["langitude"]}/>
-            </div> */}
+            </div>*/}
 
           </div>
           

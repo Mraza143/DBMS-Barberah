@@ -11,7 +11,7 @@ const router = require('express').Router()
 // use routers
 //router.post('/addSalon', salonController.addSalon)
 router.post('/addBarber', barberContoller.addBarber)
-router.get('/', barberContoller.getAllBarbers)
+router.get('/:name', barberContoller.getBarbersByLocation)
 router.get('/details/:id', barberContoller.getSingleBarber)
 router.get('/getAllReviews/:id' , barberContoller.getBarberReviews)
 router.put('/ratings/:id', barberContoller.updateRatingsOfBarber)
