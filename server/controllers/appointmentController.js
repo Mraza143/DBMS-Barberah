@@ -22,17 +22,25 @@ const getAppointments = catchAsyncErrors(async(req, res, next) => {
 })
 
 const getAppointmentOfASpecificBarber = catchAsyncErrors(async(req, res, next) => {
-
-    const appointments = await Appointments.findOne({
+    //let barberId =  req.params.id;
+    const appointments = await Appointments.findAll({
         where: { barberName: req.params.name, salonName: req.params.sname }
         // where: { id: req.params.id }
     })
-
-
     res.status(200).json({
         success: true,
         appointments
     })
+    /*
+    let barberId =  req.params.id
+    const reviews = await Reviews.findAll({ where: { barberId: barberId } })  
+   // const reviews = await Reviews.findAll({barberId: req.params.id });
+    res.status(200).json({
+        success: true,
+        reviews
+    })
+
+    */
 
 })
 

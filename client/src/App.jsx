@@ -2,7 +2,7 @@ import React from 'react'
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
 // import {Home, Welcome, Footer, Services, Salons, SpecificSalon} from "./components"
 import Home from "./components/Home"
-// import BarberProfile from "./components/BarberProfile"
+import BarberProfile from "./components/BarberProfile"
 import Navbar from "./components/Navbar"
 import Salons from './components/Salons'
 import SpecificSalon from "./components/SpecificSalon"
@@ -32,7 +32,7 @@ const App = () => {
 
 <Route path="/specificSalon/:id/:name" > <SpecificSalon /> </Route>
 
-{/* <Route path="/specificBarber/:id/:name/:sname" > <BarberProfile/>  </Route>  */}
+ <Route path="/specificBarber/:id/:name/:sname" > <BarberProfile/>  </Route>
 
 
 

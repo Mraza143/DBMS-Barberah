@@ -37,13 +37,23 @@ const addReview = async(req, res) => {
 }
 
 // Get All Barbers 
-const getAllBarbers = catchAsyncErrors(async(req, res, next) => {
-    const barbers = await Barbers.findAll({})
+const getAllReviews = catchAsyncErrors(async(req, res, next) => {
+    /*let worksAt = req.params.name
+    const barbers = await Barbers.findAll({ where: { worksAt: worksAt } })
     res.status(200).json({
         success: true,
         barbers
+    })*/ 
+    let barberId =  req.params.id
+    const reviews = await Reviews.findAll({ where: { barberId: barberId } })  
+   // const reviews = await Reviews.findAll({barberId: req.params.id });
+    res.status(200).json({
+        success: true,
+        reviews
     })
-})
+
+    })
+
 
 
 // Get Single Barber By Id
@@ -250,5 +260,6 @@ const storage = multer.diskStorage({
 
 module.exports = {
     addReview,
+    getAllReviews
 
 }

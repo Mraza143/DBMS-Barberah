@@ -7,9 +7,9 @@ import { newSalonReducer, salonReducer } from './reducers/salonReducer'
 // import { newSalonReducer } from './reducers/salonReducer'
 // import { salonDetailsReducer, salonCoordinatesReducer , salonUrlReducer } from './reducers/salonDetailsReducer'
 import { salonDetailsReducer } from './reducers/salonDetailsReducer'
-// import { barbersDetailsReducer , barbersUrlReducer } from './reducers/barberDetailsReducer'
-// import { appointmentReducer, newAppointmentReducer } from './reducers/appointmentsReducer'
-// import { reviewsReducer, ReviewCreateReducer, reviewsAverageReducer } from './reducers/reviewReducer'
+import { barbersDetailsReducer } from './reducers/barberDetailsReducer'
+import { appointmentReducer, newAppointmentReducer } from './reducers/appointmentsReducer'
+import { reviewsReducer, ReviewCreateReducer, reviewsAverageReducer } from './reducers/reviewReducer'
 
 
 const reducer = combineReducers({
@@ -19,11 +19,11 @@ const reducer = combineReducers({
     barbers: barbersReducer,
     // newBarber: newBarberReducer,
     salon: salonDetailsReducer,
-    // newReview: ReviewCreateReducer,
-    // barber: barbersDetailsReducer,
-    // appointments: appointmentReducer,
-    // newAppointment: newAppointmentReducer,
-    // reviews: reviewsReducer,
+    newReview: ReviewCreateReducer,
+    barber: barbersDetailsReducer,
+    appointments: appointmentReducer,
+    newAppointment: newAppointmentReducer,
+    reviews: reviewsReducer,
     // average: reviewsAverageReducer,
     // coordinates: salonCoordinatesReducer,
     // barberRating:  barberRatingsReducer,

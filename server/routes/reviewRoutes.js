@@ -9,6 +9,7 @@ const router = require('express').Router()
 
 // use routers
 router.post('/addReview', reviewController.addReview)
+router.get('/:id' ,reviewController.getAllReviews);
 //router.post('/addSalon', salonController.addSalon)
 //router.get('/getBarbers/:id', salonController.getSalonBarbers)
 
