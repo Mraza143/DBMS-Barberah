@@ -40,7 +40,7 @@ const registerUser = catchAsyncErrors(async(req, res, next) => {
         name,
         email,
         password: hashPassword,
-        password,
+        // password,
         role,
         image: myCloud.secure_url
     })
@@ -82,6 +82,8 @@ const loginUser = catchAsyncErrors(async(req, res, next) => {
     const accessToken = jwt.sign({ userId }, "makfi09q39r1q8nkg0fafonla", { expiresIn: "2d" })
 
     if (!user) return next(new ErrorHandler('Invalid Email or Password', 401))
+
+    console.log("Password " + password + " User 0 Password" + user[0].password)
 
     const isPasswordMatched = await bcrypt.compare(password, user[0].password)
     if (!isPasswordMatched) return next(new ErrorHandler('Password does not Match', 401))

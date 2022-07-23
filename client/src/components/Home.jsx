@@ -2,7 +2,7 @@ import React from 'react';
 // import Services from './Services';
 // import Welcome from './Welcome';
 // import SpecialButton from './SpecialButton';
-// import Salons from './Salons';
+import Salons from './Salons';
 import Welcome from "./Welcome"
 import Services from "./Services"
 
@@ -16,9 +16,9 @@ function Home() {
     </div>
     <Services />
 
-    {/* <Salons
+    <Salons
     total={4}
-    /> */}
+    />
 
 
     {/* <SpecialButton/> */}

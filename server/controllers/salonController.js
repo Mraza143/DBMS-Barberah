@@ -1,4 +1,6 @@
 const db = require('../models')
+const catchAsyncErrors = require("../middleware/catchAsyncErrors")
+const cloudinary = require("cloudinary")
 
 // image Upload
 const multer = require('multer')
@@ -15,29 +17,58 @@ const Review = db.reviews
 
 // 1. create product
 
-const addSalon = async(req, res) => {
+const createSalon = catchAsyncErrors(async(req, res, next) => {
+
+    const myCloud = await cloudinary.v2.uploader.upload(req.body.image, {
+        folder: 'dbms_salonimages',
+        width: 150,
+        crop: 'scale',
+    })
+
 
     let info = {
-        image: req.file.path,
         name: req.body.name,
         timings: req.body.timings,
         location: req.body.location,
+        image: myCloud.secure_url,
 
     }
 
     const salon = await Salons.create(info)
     res.status(200).send(salon)
-    console.log(salon)
+        // console.log(salon)
 
-}
 
-const getAllSalons = async(req, res) => {
+})
+
+// Get Single Salon by id in specific salon
+const getSingleSalon = catchAsyncErrors(async(req, res, next) => {
+
+    let id = req.params.id
+    let salon = await Salons.findOne({ where: { id: id } })
+    res.status(200).json({
+        success: true,
+        salon
+    })
+
+})
+
+
+// Home Page All Salons
+const getAllSalons = catchAsyncErrors(async(req, res, next) => {
 
     let salons = await Salons.findAll({})
-    res.status(200).send(salons)
+    res.status(200).json({
+        success: true,
+        salons
+    })
 
-}
+})
 
+
+
+
+// Rough Relations
 const getSalonBarbers = async(req, res) => {
     const id = req.params.id
     const data = await Salons.findOne({
@@ -53,141 +84,11 @@ const getSalonBarbers = async(req, res) => {
 }
 
 
-// const storage = multer.diskStorage({
-//     destination: (req, file, cb) => {
-//         cb(null, 'server/Images')
-//     },
-//     filename: (req, file, cb) => {
-//         cb(null, Date.now() + path.extname(file.originalname))
-//     }
-// })
-
-// const upload = multer({
-//     storage: storage,
-//     limits: { fileSize: '1000000' },
-//     fileFilter: (req, file, cb) => {
-//         const fileTypes = /jpeg|jpg|png|gif/
-//         const mimeType = fileTypes.test(file.mimetype)  
-//         const extname = fileTypes.test(path.extname(file.originalname))
-
-//         if(mimeType && extname) {
-//             return cb(null, true)
-//         }
-//         cb('Give proper files formate to upload')
-//     }
-// }).single('image')
-
-// -----------------
-// 2. get all products
-
-/*const getAllProducts = async (req, res) => {
-
-    let products = await Product.findAll({})
-    res.status(200).send(products)
-
-}
-
-// 3. get single product
-
-const getOneProduct = async (req, res) => {
-
-    let id = req.params.id
-    let product = await Product.findOne({ where: { id: id }})
-    res.status(200).send(product)
-
-}
-
-// 4. update Product
-
-const updateProduct = async (req, res) => {
-
-    let id = req.params.id
-
-    const product = await Product.update(req.body, { where: { id: id }})
-
-    res.status(200).send(product)
-   
-
-}
-
-// 5. delete product by id
-
-const deleteProduct = async (req, res) => {
-
-    let id = req.params.id
-    
-    await Product.destroy({ where: { id: id }} )
-
-    res.status(200).send('Product is deleted !')
-
-}
-
-// 6. get published product
-
-const getPublishedProduct = async (req, res) => {
-
-    const products =  await Product.findAll({ where: { published: true }})
-
-    res.status(200).send(products)
-
-}
-
-// 7. connect one to many relation Product and Reviews
-
-const getProductReviews =  async (req, res) => {
-
-    const id = req.params.id
-
-    const data = await Product.findOne({
-        include: [{
-            model: Review,
-            as: 'review'
-        }],
-        where: { id: id }
-    })
-
-    res.status(200).send(data)
-
-}
-
-
-// 8. Upload Image Controller
-
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'Images')
-    },
-    filename: (req, file, cb) => {
-        cb(null, Date.now() + path.extname(file.originalname))
-    }
-})
-
-/*const upload = multer({
-    storage: storage,
-    limits: { fileSize: '1000000' },
-    fileFilter: (req, file, cb) => {
-        const fileTypes = /jpeg|jpg|png|gif/
-        const mimeType = fileTypes.test(file.mimetype)  
-        const extname = fileTypes.test(path.extname(file.originalname))
-
-        if(mimeType && extname) {
-            return cb(null, true)
-        }
-        cb('Give proper files formate to upload')
-    }
-}).single('image')
-
-
-
-*/
-
-
-
-
 
 module.exports = {
-    addSalon,
+    createSalon,
     getSalonBarbers,
+    getSingleSalon,
     getAllSalons,
 
 

@@ -3,8 +3,10 @@ import thunk from 'redux-thunk'
 import { composeWithDevTools } from "redux-devtools-extension"
 import { userReducer } from "./reducers/userReducer"
 // import { barbersReducer, newBarberReducer ,barberRatingsReducer} from './reducers/barberReducer'
-// import { newSalonReducer, salonReducer } from './reducers/salonReducer'
+import { newSalonReducer, salonReducer } from './reducers/salonReducer'
+// import { newSalonReducer } from './reducers/salonReducer'
 // import { salonDetailsReducer, salonCoordinatesReducer , salonUrlReducer } from './reducers/salonDetailsReducer'
+import { salonDetailsReducer } from './reducers/salonDetailsReducer'
 // import { barbersDetailsReducer , barbersUrlReducer } from './reducers/barberDetailsReducer'
 // import { appointmentReducer, newAppointmentReducer } from './reducers/appointmentsReducer'
 // import { reviewsReducer, ReviewCreateReducer, reviewsAverageReducer } from './reducers/reviewReducer'
@@ -12,11 +14,11 @@ import { userReducer } from "./reducers/userReducer"
 
 const reducer = combineReducers({
     user: userReducer,
-    // salons: salonReducer,
-    // newSalon: newSalonReducer,
+    salons: salonReducer,
+    newSalon: newSalonReducer,
     // barbers: barbersReducer,
     // newBarber: newBarberReducer,
-    // salon: salonDetailsReducer,
+    salon: salonDetailsReducer,
     // newReview: ReviewCreateReducer,
     // barber: barbersDetailsReducer,
     // appointments: appointmentReducer,

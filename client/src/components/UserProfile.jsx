@@ -52,24 +52,24 @@ const UserProfile = () => {
             <img
               className="rounded-full h-20 w-20"
               // src={profilePng}
-              src={user?.image}
+              src={user[0]?.image}
               // src={link }
               alt="user-profile"
             />
             <div>
               <p className="font-semibold text-xl dark:text-gray-200">
-                {user?.name}
+                {user[0]?.name}
                 </p>
             
               <p className="text-gray-500 text-sm font-semibold dark:text-gray-400">
-                {user?.email}
+                {user[0]?.email}
               </p>
             </div>
           </div>
           <div>
 
             {
-              user.role === "salonowner" && <>
+              user[0].role === "salonowner" && <>
             <Link to="/salonowner/dashboard"
             onClick={()=>setIsClicked(!isClicked)}
             className="flex gap-5 mt-6 border-b-1 border-color p-2 hover:bg-[#37c7da] rounded hover:text-white cursor-pointer">

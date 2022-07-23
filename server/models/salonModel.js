@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
 
     const Salons = sequelize.define("salons", {
-        image:{
+        image: {
             type: DataTypes.STRING,
         },
 

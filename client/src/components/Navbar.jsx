@@ -72,12 +72,12 @@ const Navbar = () => {
         <img
           className="rounded-full w-[2.5rem] h-[2.5rem] text-white text-sm"
           // src={user.avatar.url? user.avatar.url : profilePng}
-          src={user?.image}
+          src={user[0]?.image}
           alt="user-profile"
         />
         <p className="flex items-center justify-center">
           <span className="text-gray-400 text-10 text-base mr-2">Hi,</span>{" "}
-          <span className="text-gray-400 ml-1 text-10 text-lg">{user?.name}</span>
+          <span className="text-gray-400 ml-1 text-10 text-lg">{user[0]?.name}</span>
         </p>
         <MdKeyboardArrowDown className="text-gray-400 text-14" />
       </div>

@@ -8,8 +8,9 @@ const router = require('express').Router()
 
 
 // use routers
+router.get('/singleSalon/:id', salonController.getSingleSalon)
 router.get('/allSalons', salonController.getAllSalons)
-router.post('/addSalon', salonController.addSalon)
+router.post('/salonowner/newsalon', salonController.createSalon)
 router.get('/getBarbers/:id', salonController.getSalonBarbers)
 
 //router.get('/allProducts', productController.getAllProducts)
