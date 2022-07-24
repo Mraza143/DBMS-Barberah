@@ -3,10 +3,10 @@ import './Sidebar.css'
 import logo from "/images/logo2.png";
 import { Link } from 'react-router-dom'
 import AddIcon from '@material-ui/icons/Add'
-import ListAltIcon from '@material-ui/icons/ListAlt'
+// import ListAltIcon from '@material-ui/icons/ListAlt'
 import DashboardIcon from '@material-ui/icons/Dashboard'
 import PeopleIcon from '@material-ui/icons/People'
-import RateReviewIcon from '@material-ui/icons/RateReview'
+// import RateReviewIcon from '@material-ui/icons/RateReview'
 
 const Sidebar = () => {
   return (
@@ -26,7 +26,7 @@ const Sidebar = () => {
         </p>
       </Link>
 
-      <Link to="/salonowner/barber">
+      <Link to="/salonowner/newbarber">
         <p>
         <AddIcon /> Create Barber
         </p>
@@ -46,25 +46,80 @@ const Sidebar = () => {
 
 
 
-      <Link to="/salonowner/appointments">
-        <p>
-          <ListAltIcon />
-          Appointments
-        </p>
-      </Link>
-      <Link to="/salonowner/users">
-        <p>
-          <PeopleIcon /> Users
-        </p>
-      </Link>
-      <Link to="/salonowner/reviews">
-        <p>
-          <RateReviewIcon />
-          Reviews
-        </p>
-      </Link>
+     
     </div>
   )
 }
 
 export default Sidebar
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// <Link to="/salonowner/appointments">
+// <p>
+//   <ListAltIcon />
+//   Appointments
+// </p>
+// </Link>
+// <Link to="/salonowner/users">
+// <p>
+//   <PeopleIcon /> Users
+// </p>
+// </Link>
+// <Link to="/salonowner/reviews">
+// <p>
+//   <RateReviewIcon />
+//   Reviews
+// </p>
+// </Link>

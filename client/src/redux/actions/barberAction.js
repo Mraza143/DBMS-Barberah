@@ -48,7 +48,7 @@ export const createBarber = (barberData) => async(dispatch) => {
         }
 
         const { data } = await axios.post(
-            'http://localhost:5000/api/barbers/salonowner/barber/new',
+            'http://localhost:5000/api/barbers/salonowner/newbarber',
             barberData,
             config,
         )
@@ -66,7 +66,7 @@ export const createBarber = (barberData) => async(dispatch) => {
 }
 
 
-// Get All Products For Admin
+// Get All Barbers For Admin
 export const getSalonOwnerBarbers = () => async(dispatch) => {
     try {
         dispatch({ type: ADMIN_BARBER_REQUEST })
@@ -85,14 +85,14 @@ export const getSalonOwnerBarbers = () => async(dispatch) => {
     }
 }
 
-export const getBarbersAverage = (id , ratings) => async(dispatch) => {
+export const getBarbersAverage = (id, ratings) => async(dispatch) => {
     try {
         dispatch({ type: UPDATE_BARBER_REQUEST })
-        //const { data } = await axios.get(`http://localhost:5000/api/reviews/${id}/average`);
-        const {data}= axios.put(`http://localhost:5000/api/barbers/ratings/${id}`,ratings)
-  
+            //const { data } = await axios.get(`http://localhost:5000/api/reviews/${id}/average`);
+        const { data } = axios.put(`http://localhost:5000/api/barbers/ratings/${id}`, ratings)
+
         //const resp = await fetch(`http://localhost:5000/api/appointments/${id}/${name}/${sname}`);
-  
+
         dispatch({
             type: UPDATE_BARBER_SUCCESS,
             payload: data,
@@ -103,8 +103,8 @@ export const getBarbersAverage = (id , ratings) => async(dispatch) => {
             payload: error.response.data.message,
         })
     }
-  }
-  
+}
+
 
 
 

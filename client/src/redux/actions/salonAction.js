@@ -30,6 +30,29 @@ export const getAllSalons = () => async(dispatch) => {
 
 
 
+// Get All Salons For Admin
+export const getSalonOwnerSalons = () => async(dispatch) => {
+    try {
+        dispatch({ type: ADMIN_SALON_REQUEST })
+
+
+        const { data } = await axios.get(`http://localhost:5000/api/salons/salonowner/salons`);
+
+        dispatch({
+            type: ADMIN_SALON_SUCCESS,
+            payload: data,
+        })
+    } catch (error) {
+        dispatch({
+            type: ADMIN_SALON_FAIL,
+            payload: error.response.data.message,
+        })
+    }
+}
+
+
+
+
 
 
 
@@ -74,3 +97,101 @@ export const createSalon = (salonData) => async(dispatch) => {
 export const clearErrors = () => async(dispatch) => {
     dispatch({ type: CLEAR_ERRORS })
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // Update Product
+// export const updateSalon = (id, salonData) => async(dispatch) => {
+//     try {
+//         dispatch({ type: UPDATE_SALON_REQUEST })
+
+//         const config = {
+//             headers: { 'Content-Type': 'application/json' },
+//         }
+
+//         const { data } = await axios.put(
+//             `http://localhost:5000/api/salons/salonowner/salon/${id}`,
+//             salonData,
+//             config,
+//         )
+
+//         dispatch({
+//             type: UPDATE_SALON_SUCCESS,
+//             payload: data.success,
+//         })
+//     } catch (error) {
+//         dispatch({
+//             type: UPDATE_SALON_FAIL,
+//             payload: error.response.data.message,
+//         })
+//     }
+
+
+
+
+
+
+// // Get Products Details
+// export const getAdminSalonDetails = (id) => async(dispatch) => {
+//     try {
+//         dispatch({ type: ADMIN_SALON_DETAILS_REQUEST })
+
+//         const { data } = await axios.get(`http://localhost:5000/api/salons/salonowner/salon/${id}`)
+
+//         dispatch({
+//             type: ADMIN_SALON_DETAILS_SUCCESS,
+//             payload: data,
+//         })
+
+//     } catch (error) {
+//         dispatch({
+//             type: ADMIN_SALON_DETAILS_FAIL,
+//             payload: error.response.data.message,
+//         })
+//     }
+// }
+// }

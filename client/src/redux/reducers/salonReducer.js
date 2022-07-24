@@ -79,3 +79,142 @@ export const newSalonReducer = (state = { salon: {} }, action) => {
             return state
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// export const adminsalonDetailsReducer = (state = { salon: {} }, action) => {
+//     switch (action.type) {
+//         case ADMIN_SALON_DETAILS_REQUEST:
+//             return {
+//                 loading: true,
+//                 ...state,
+//             }
+
+//         case ADMIN_SALON_DETAILS_SUCCESS:
+//             return {
+//                 loading: false,
+//                 salon: action.payload.salon,
+//             }
+
+//         case ADMIN_SALON_DETAILS_FAIL:
+//             return {
+//                 loading: false,
+//                 error: action.payload,
+//             }
+
+//         case CLEAR_ERRORS:
+//             return {
+//                 ...state,
+//                 error: null,
+//             }
+
+//         default:
+//             return state
+//     }
+// }
+
+
+
+// export const salonAddDelReducer = (state = {}, action) => {
+//     switch (action.type) {
+//         case DELETE_SALON_REQUEST:
+//         case UPDATE_SALON_REQUEST:
+//             return {
+//                 ...state,
+//                 loading: true,
+//             }
+//         case DELETE_SALON_SUCCESS:
+//             return {
+//                 ...state,
+//                 loading: false,
+//                 isDeleted: action.payload,
+//             }
+
+//         case UPDATE_SALON_SUCCESS:
+//             return {
+//                 ...state,
+//                 loading: false,
+//                 isUpdated: action.payload,
+//             }
+//         case DELETE_SALON_FAIL:
+//         case UPDATE_SALON_FAIL:
+//             return {
+//                 ...state,
+//                 loading: false,
+//                 error: action.payload,
+//             }
+//         case DELETE_SALON_RESET:
+//             return {
+//                 ...state,
+//                 isDeleted: false,
+//             }
+//         case UPDATE_SALON_RESET:
+//             return {
+//                 ...state,
+//                 isUpdated: false,
+//             }
+//         case CLEAR_ERRORS:
+//             return {
+//                 ...state,
+//                 error: null,
+//             }
+//         default:
+//             return state
+//     }
+// }

@@ -25,7 +25,7 @@ const Navbar = () => {
   // For User Profile
   const [isClicked, setIsClicked]=useState(false)
   //Modift this array for links of navbar
-  const links =["AboutUs","Salons","login","ContactUs"] 
+  const links =["AboutUs","Salons","login", "Trending", "ContactUs"] 
 
   return (
 

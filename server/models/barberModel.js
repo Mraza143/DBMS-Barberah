@@ -23,9 +23,14 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
 
+        experience: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+
         ratings: {
             type: DataTypes.FLOAT,
-            allowNull: false
+            // allowNull: false
         },
 
 
