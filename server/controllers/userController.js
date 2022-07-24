@@ -109,6 +109,23 @@ const logoutUser = catchAsyncErrors(async(req, res, next) => {
 
 })
 
+
+
+// Get All Users (admin)
+const getAdminAllUsers = catchAsyncErrors(async(req, res, next) => {
+
+    const usersCount = await Users.count()
+    const users = await Users.findAll({})
+
+    res.status(200).json({
+        success: true,
+        users,
+        usersCount
+    })
+})
+
+
+
 const getUserAppointments = async(req, res) => {
     const id = req.params.id
     const data = await Users.findOne({
@@ -132,5 +149,6 @@ module.exports = {
     registerUser,
     loginUser,
     logoutUser,
+    getAdminAllUsers,
     getUserAppointments,
 }

@@ -24,10 +24,12 @@ const Review = db.reviews
 // Get All Salons (Admin)
 const getAdminSalons = catchAsyncErrors(async(req, res, next) => {
 
+    let salonsCount = await Salons.count()
     let salons = await Salons.findAll({})
     res.status(200).json({
         success: true,
-        salons
+        salons,
+        salonsCount
     })
 
 })

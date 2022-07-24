@@ -21,7 +21,8 @@ export const salonReducer = (state = { salons: [] }, action) => {
         case ADMIN_SALON_SUCCESS:
             return {
                 loading: false,
-                salons: action.payload.salons
+                salons: action.payload.salons,
+                salonsCount: action.payload.salonsCount
             }
 
 
