@@ -25,7 +25,7 @@ const Navbar = () => {
   // For User Profile
   const [isClicked, setIsClicked]=useState(false)
   //Modift this array for links of navbar
-  const links =["AboutUs","Salons","login", "Trending", "ContactUs"] 
+  const links =["AboutUs","Salons","login",  "ContactUs"] 
 
   return (
 
@@ -35,7 +35,7 @@ const Navbar = () => {
         
       </div>
       <ul className="text-[#c8c8c8] md:flex hidden list-none flex-row justify-between items-center flex-initial">
-        {["About Us", "Salons" , "Login", "Trending" , "Contact Us"].map((item, index) => (
+        {["About Us", "Salons" , "Login" , "Contact Us"].map((item, index) => (
           <NavBarItem key={item + index} title={item} link={`/${links[index]}`} />
         ))}
 

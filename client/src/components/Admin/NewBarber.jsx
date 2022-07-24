@@ -49,7 +49,7 @@ const NewBarber = () => {
     //   myForm.append('images', image)
     // })
 
-    dispatch(createBarber(myForm))
+    dispatch(createBarber(myForm ,worksAt ))
   }
 
   const createBarberImagesChange = (e) => {

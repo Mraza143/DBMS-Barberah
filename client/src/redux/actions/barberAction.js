@@ -39,7 +39,7 @@ export const getAllBarberss = (name) => async(dispatch) => {
 
 
 // Create Barber (Admin)
-export const createBarber = (barberData) => async(dispatch) => {
+export const createBarber = (barberData ,worksAt) => async(dispatch) => {
     try {
         dispatch({ type: NEW_BARBER_REQUEST })
 
@@ -48,7 +48,7 @@ export const createBarber = (barberData) => async(dispatch) => {
         }
 
         const { data } = await axios.post(
-            'http://localhost:5000/api/barbers/salonowner/newbarber',
+            `http://localhost:5000/api/barbers/salonowner/newbarber/${worksAt}`,
             barberData,
             config,
         )

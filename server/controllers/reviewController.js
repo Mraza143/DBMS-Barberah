@@ -26,12 +26,19 @@ const addReview = async(req, res) => {
     const reviews= await Reviews.findAll({where: { barberId: barberId }})
     //const barber = await Barbers.findById(req.params.id)
     let val = 0;
+    console.log("reviws length"+reviews.length)
     if(reviews.length===0){
     val= req.body.rating;
   }else{
-    val =
+    /*val =
     reviews.reduce((acc, item) => item.rating + acc, 0) /
-    reviews.length
+    reviews.length*/
+    reviews.forEach((rev) => {
+        val += rev.rating
+    })
+    //product.ratings = avg / product.reviews.length
+    val = val / reviews.length
+   
     }
 
     let info = {

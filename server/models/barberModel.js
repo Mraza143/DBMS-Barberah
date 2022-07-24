@@ -28,10 +28,6 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
 
-        ratings: {
-            type: DataTypes.FLOAT,
-            // allowNull: false
-        },
 
 
 

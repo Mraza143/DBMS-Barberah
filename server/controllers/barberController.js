@@ -8,10 +8,7 @@ const ErrorHandler = require('../utils/errorHandler');
 const cloudinary = require("cloudinary")
 
 
-// create main Model
-//const Product = db.products
-//const Salons = db.salons
-//const Review = db.reviews
+const Salons = db.salons
 const Barbers = db.barbers;
 const Reviews = db.reviews;
 
@@ -26,14 +23,17 @@ const addBarber = catchAsyncErrors(async(req, res, next) => {
         width: 150,
         crop: 'scale',
     })
+   
 
+    let worksAt =req.params.worksAt;
+    let salon = await Salons.findOne({ where: { name :  worksAt } })
     let info = {
         name: req.body.name,
         worksAt: req.body.worksAt,
         timings: req.body.timings,
         ratings: req.body.ratings,
         experience: req.body.experience,
-        salonId: req.body.salon_id,
+        salonId: salon.id,
         image: myCloud.secure_url
 
     }
@@ -73,7 +73,9 @@ const getSingleBarber = catchAsyncErrors(async(req, res, next) => {
 const updateRatingsOfBarber = catchAsyncErrors(async(req, res, next) => {
 
     let id = req.params.id
+    //let updateValues= {average : req.body.average}
     const updatedBarberRatings = await Barbers.update(req.body, { where: { id: id } })
+    //const barber = await Barbers.findOne({ where: { id: id }})
 
     res.status(200).json({
         success: true,
@@ -109,6 +111,8 @@ const getBarberReviews = async(req, res) => {
     res.status(200).send(data)
 
 }
+
+
 
 // Get Barbers By Url
 
