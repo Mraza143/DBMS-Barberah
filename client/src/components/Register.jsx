@@ -71,17 +71,6 @@ const Register = () => {
   }
   // ----------------
 
-  // const handleFileChange = (e) => {
-  //   // console.log(e.target.files[0]);
-  //   // console.log("hoo"+ i)
-  //   if (e.target.files[0]) {
-  //     setImage(e.target.files[0]);
-  //     setImagePreview(e.target.files[0])
-  //     console.log("Image "+ image)
-  //   }
-  // };
-
-  // -----------------
   useEffect(() => {
     if (error) {
       alert.error(error)
