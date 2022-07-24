@@ -178,7 +178,7 @@ const BarberProfile = () => {
                 Experience: {barber?.experience} years
               </p>
               <p className=" text-white text-base font-bold ">
-                Ratings: {average} /10
+                Ratings: {average} /5
               </p>
             </div>
             <img

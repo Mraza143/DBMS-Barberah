@@ -32,6 +32,11 @@ const Services = () => (
           We use modern technology due to which we connect clients with Customers 
           quickly and solve the existing market problems.
         </p>
+        <p className="text-left my-2 text-white font-light md:w-9/12 w-11/12 text-base">
+          We are a team of professionals who love to connect people.
+          All the barbers , Salons And customers are satisfied with our services as we
+          solve the existing market problems.
+        </p>
       </div>
 
       <div className="flex-[0.4] flex flex-col justify-start items-center">

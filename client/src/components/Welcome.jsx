@@ -42,7 +42,7 @@ const Welcome = () => {
             <div className={`rounded-tl-2xl ${companyCommonStyles}`}>
               Reliable
             </div>
-            <div className={companyCommonStyles}>Scalable</div>
+            <div className={companyCommonStyles}>Trustable</div>
             <div className={`sm:rounded-tr-2xl ${companyCommonStyles}`}>
               Efficient
             </div>
