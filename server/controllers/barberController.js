@@ -1,8 +1,5 @@
 const db = require('../models')
 
-// image Upload
-const multer = require('multer')
-const path = require('path');
 const catchAsyncErrors = require('../middleware/catchAsyncErrors');
 const ErrorHandler = require('../utils/errorHandler');
 const cloudinary = require("cloudinary")
@@ -113,13 +110,6 @@ const getBarberReviews = async(req, res) => {
 }
 
 
-
-// Get Barbers By Url
-
-// Images method will determine this function
-
-
-
 // Get All Barbers (Admin)
 const getAdminBarbers = catchAsyncErrors(async(req, res, next) => {
     const barbers = await Barbers.findAll({})
@@ -167,16 +157,6 @@ const deleteBarber = catchAsyncErrors(async(req, res, next) => {
 
 })
 
-
-
-
-
-
-
-
-
-
-
 module.exports = {
     addBarber,
     getAllBarbers,
@@ -187,7 +167,4 @@ module.exports = {
     updateBarber,
     deleteBarber,
     getBarberReviews
-
-
-
 }

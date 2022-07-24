@@ -33,7 +33,6 @@ const db = {}
 db.Sequelize = Sequelize
 db.sequelize = sequelize
 
-db.products = require('./productModel.js')(sequelize, DataTypes)
 db.users = require('./userModel.js')(sequelize, DataTypes)
 db.salons = require('./salonModel.js')(sequelize, DataTypes)
 db.barbers = require('./barberModel.js')(sequelize, DataTypes)

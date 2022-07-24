@@ -1,11 +1,6 @@
 const app = require("./app");
 require('dotenv').config()
 const cloudinary = require("cloudinary")
-    // middleware
-    // routers
-
-
-
 // Cloudinary
 cloudinary.config({
     cloud_name: "diznq0vwe",
@@ -14,15 +9,7 @@ cloudinary.config({
 })
 
 
-
-
-//port
 const PORT = 5000
-
-
-
-
-//server
 
 app.listen(PORT, () => {
     console.log(`server is running on port ${PORT}`)

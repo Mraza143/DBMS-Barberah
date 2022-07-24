@@ -1,6 +1,5 @@
 const db = require('../models')
 
-const path = require('path');
 const catchAsyncErrors = require('../middleware/catchAsyncErrors');
 const ErrorHandler = require('../utils/errorHandler');
 
@@ -23,16 +22,7 @@ const getAppointmentOfASpecificBarber = catchAsyncErrors(async(req, res, next) =
         success: true,
         appointments
     })
-    /*
-    let barberId =  req.params.id
-    const reviews = await Reviews.findAll({ where: { barberId: barberId } })  
-   // const reviews = await Reviews.findAll({barberId: req.params.id });
-    res.status(200).json({
-        success: true,
-        reviews
-    })
 
-    */
 
 })
 

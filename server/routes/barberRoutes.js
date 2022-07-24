@@ -1,6 +1,4 @@
-//const productController = require('../controllers/productController.js')
-//const reviewController = require('../controllers/reviewController')
-//const salonController = require('../controllers/salonController')
+
 const barberContoller = require('../controllers/barberController')
 
 

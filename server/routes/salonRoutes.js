@@ -1,7 +1,6 @@
-//const productController = require('../controllers/productController.js')
-//const reviewController = require('../controllers/reviewController')
+
 const salonController = require('../controllers/salonController')
-    // const imageUploader = require('../utils/imageUploader')
+
 
 // router
 const router = require('express').Router()
@@ -18,37 +17,3 @@ router.post('/salonowner/newsalon', salonController.createSalon)
 
 
 module.exports = router
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// router.get('/salonowner/salon/:id', salonController.getAdminSalonDetails)
-// router.put('/salonowner/salon/:id', salonController.updateSalon)

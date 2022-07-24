@@ -11,14 +11,7 @@ const cloudinary = require("cloudinary")
 // create main Model
 const Users = db.users;
 const Appointments = db.appointments;
-//PORT = 5000;
 
-//const JWT_SECRET="makfi09q39r1q8nkg0fafonla";
-//const JWT_EXPIRES="2d";
-//const COOKIE_EXPIRE=5;
-
-
-// Main Work
 
 
 // Register User
@@ -129,37 +122,6 @@ const getUserAppointments = async(req, res) => {
     res.status(200).send(data)
 
 }
-
-
-// --------------------------
-// const storage = multer.diskStorage({
-//     destination: (req, file, cb) => {
-//         cb(null, 'server/Images')
-//     },
-//     filename: (req, file, cb) => {
-//         cb(null, Date.now() + path.extname(file.originalname))
-//     }
-// })
-
-// const upload = multer({
-//     storage: storage,
-//     limits: { fileSize: '1000000' },
-//     fileFilter: (req, file, cb) => {
-//         const fileTypes = /jpeg|jpg|png|gif/
-//         const mimeType = fileTypes.test(file.mimetype)
-//         const extname = fileTypes.test(path.extname(file.originalname))
-
-//         if (mimeType && extname) {
-//             return cb(null, true)
-//         }
-//         cb('Give proper files formate to upload')
-//     }
-// }).single('image')
-
-
-
-
-
 
 
 
