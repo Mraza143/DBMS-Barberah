@@ -1,4 +1,3 @@
-
 const barberContoller = require('../controllers/barberController')
 
 
@@ -16,7 +15,7 @@ router.put('/ratings/:id', barberContoller.updateRatingsOfBarber)
 router.get('/:name', barberContoller.getBarbersByLocation)
 router.get('/salonowner/barbers', barberContoller.getAdminBarbers)
 router.put('/salonowner/:id', barberContoller.updateBarber)
-router.delete('/salonowner/:id', barberContoller.deleteBarber)
+router.delete('/salonownerd/:id', barberContoller.deleteBarber)
 
 
 module.exports = router

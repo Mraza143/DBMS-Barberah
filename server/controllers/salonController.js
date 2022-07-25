@@ -36,6 +36,20 @@ const createSalon = catchAsyncErrors(async(req, res, next) => {
 
 })
 
+
+const getAdminSalons = catchAsyncErrors(async(req, res, next) => {
+
+    let salonsCount = await Salons.count()
+    let salons = await Salons.findAll({})
+    res.status(200).json({
+        success: true,
+        salons,
+        salonsCount
+    })
+
+})
+
+
 // Get Single Salon by id in specific salon
 const getSingleSalon = catchAsyncErrors(async(req, res, next) => {
 
@@ -80,6 +94,7 @@ const getSalonBarbers = async(req, res) => {
 module.exports = {
     createSalon,
     getSalonBarbers,
+    getAdminSalons,
     getSingleSalon,
     getAllSalons,
 }

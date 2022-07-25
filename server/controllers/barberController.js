@@ -20,10 +20,10 @@ const addBarber = catchAsyncErrors(async(req, res, next) => {
         width: 150,
         crop: 'scale',
     })
-   
 
-    let worksAt =req.params.worksAt;
-    let salon = await Salons.findOne({ where: { name :  worksAt } })
+
+    let worksAt = req.params.worksAt;
+    let salon = await Salons.findOne({ where: { name: worksAt } })
     let info = {
         name: req.body.name,
         worksAt: req.body.worksAt,
@@ -77,9 +77,9 @@ const getSingleBarber = catchAsyncErrors(async(req, res, next) => {
 const updateRatingsOfBarber = catchAsyncErrors(async(req, res, next) => {
 
     let id = req.params.id
-    //let updateValues= {average : req.body.average}
+        //let updateValues= {average : req.body.average}
     const updatedBarberRatings = await Barbers.update(req.body, { where: { id: id } })
-    //const barber = await Barbers.findOne({ where: { id: id }})
+        //const barber = await Barbers.findOne({ where: { id: id }})
 
     res.status(200).json({
         success: true,
@@ -121,10 +121,12 @@ const getBarberReviews = async(req, res) => {
 
 // Get All Barbers (Admin)
 const getAdminBarbers = catchAsyncErrors(async(req, res, next) => {
+    const barbersCount = await Barbers.count()
     const barbers = await Barbers.findAll({})
     res.status(200).json({
         success: true,
-        barbers
+        barbers,
+        barbersCount
     })
 })
 
@@ -146,6 +148,9 @@ const updateBarber = catchAsyncErrors(async(req, res, next) => {
         barber
     })
 
+    // Executing (default): UPDATE `barbers` SET `name`=?,`worksAt`=?,`timings`=?,`experience`=?,`updatedAt`=? WHERE `id` = ?
+
+
 })
 
 // Delete Barber (Admin)
@@ -154,15 +159,16 @@ const deleteBarber = catchAsyncErrors(async(req, res, next) => {
     // Images Code Will Be done later
 
     let id = req.params.id
-    const barber = await Barbers.destroy(req.body, { where: { id: id } })
+    await Barbers.destroy({ where: { id: id } })
 
-    if (!barber) return next(new ErrorHandler("Barber not Found with this Id", 400))
+    // if (!barber) return next(new ErrorHandler("Barber not Found with this Id", 400))
 
     res.status(200).json({
         success: true,
         message: "Barber Deleted Successfully",
-        barber
     })
+
+    // Executing (default): DELETE FROM `barbers` WHERE `id` = '2'
 
 })
 
