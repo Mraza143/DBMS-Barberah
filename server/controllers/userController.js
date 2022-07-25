@@ -52,6 +52,10 @@ const registerUser = catchAsyncErrors(async(req, res, next) => {
         accessToken
     })
 
+    /*
+    INSERT INTO `users` (`id`,`image`,`name`,`email`,`password`,`role`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?,?,?);
+     */
+
 
 })
 
@@ -91,6 +95,10 @@ const loginUser = catchAsyncErrors(async(req, res, next) => {
         user,
         accessToken
     })
+    /*
+     SELECT `id`, `image`, `name`, `email`, `password`, `role`, `createdAt`, `updatedAt` FROM `users` AS `users` WHERE `users`.`email` = 'shayan@gmail.com';
+    Password password User 0 Password$2b$10$I4lj4Rjah9dy/p8u47luo.xalBZAqXGAI/2mtQ7R12q7FSrrazT4G
+     */
 
 })
 

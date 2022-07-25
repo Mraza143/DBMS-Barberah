@@ -34,11 +34,34 @@ db.Sequelize = Sequelize
 db.sequelize = sequelize
 
 db.users = require('./userModel.js')(sequelize, DataTypes)
+
+/* CREATE TABLE IF NOT EXISTS `users` (`id` INTEGER NOT NULL auto_increment , `image` VARCHAR(255), `name` VARCHAR(255), `email` VARCHAR(255),
+ `password` VARCHAR(255), `role` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt`
+  DATETIME NOT NULL, PRIMARY KEY (`id`))*/
 db.salons = require('./salonModel.js')(sequelize, DataTypes)
+
+/*CREATE TABLE IF NOT EXISTS `salons` (`id` INTEGER NOT NULL auto_increment , `image` VARCHAR(255), `name` VARCHAR(255), `location` VARCHAR(255), `timings` VARCHAR(255), `createdAt` DATETIME NOT 
+NULL, `updatedAt` DATETIME NOT NULL, PRIMARY KEY (`id`))*/
+
 db.barbers = require('./barberModel.js')(sequelize, DataTypes)
+
+ /*CREATE TABLE IF NOT EXISTS `barbers` (`id` INTEGER NOT NULL auto_increment , `image` VARCHAR(255), `name` VARCHAR(255) NOT NULL, `worksAt` VARCHAR(255) NOT NULL, `timings` VARCHAR(255) NOT NULL, 
+ `experience` VARCHAR(255) NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL,
+  `salonId` INTEGER, PRIMARY KEY (`id`), FOREIGN KEY (`salonId`) REFERENCES `salons` (`id`) ON DELETE SET NULL ON UPDATE CASCADE)*/
 db.appointments = require('./appointmentModel.js')(sequelize, DataTypes)
+
+ /*CREATE TABLE IF NOT EXISTS `appointments` (`id` INTEGER NOT NULL auto_increment , `customerName` VARCHAR(255) NOT NULL, `barberName` VARCHAR(255) NOT NULL, 
+ `salonName` VARCHAR(255) NOT NULL, `date` DATE, `price` INTEGER NOT NULL, `createdAt` DATETIME NOT NULL,
+  `updatedAt` DATETIME NOT NULL, `userId` INTEGER, PRIMARY KEY (`id`), FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE)*/
 db.reviews = require('./reviewModel.js')(sequelize, DataTypes)
-    //db.reviews = require('./reviewModel.js')(sequelize, DataTypes)
+
+/*CREATE TABLE IF NOT EXISTS `reviews` (`id` INTEGER NOT NULL auto_increment , `barberName` VARCHAR(255), `customerName` VARCHAR(255), 
+`rating` FLOAT, `comment` VARCHAR(255), `average` FLOAT, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `barberId` INTEGER, PRIMARY KEY (`id`), FOREIGN KEY (`barberId`) REFERENCES `barbers` (`id`) ON DELETE SET NULL ON UPDATE CASCADE)
+ */    
+
+
+
+//db.reviews = require('./reviewModel.js')(sequelize, DataTypes)
 
 db.sequelize.sync({ force: false })
     .then(() => {

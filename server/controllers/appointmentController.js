@@ -23,6 +23,10 @@ const getAppointmentOfASpecificBarber = catchAsyncErrors(async(req, res, next) =
         appointments
     })
 
+    /*
+     SELECT `id`, `customerName`, `barberName`, `salonName`, `date`, `price`, `createdAt`, `updatedAt`, `userId` FROM `appointments` AS `appointments` WHERE `appointments`.`barberName` = 'Zulfi' AND `appointments`.`salonName` = 'DMH';
+     */
+
 
 })
 
@@ -44,6 +48,10 @@ const setAppointment = catchAsyncErrors(async(req, res, next) => {
         message: "Appointment Booked Successfully",
         appointment
     })
+
+    /*
+    Executing (default): INSERT INTO `appointments` (`id`,`customerName`,`barberName`,`salonName`,`date`,`price`,`createdAt`,`updatedAt`,`userId`) VALUES (DEFAULT,?,?,?,?,?,?,?,?);
+    */
 
 })
 
