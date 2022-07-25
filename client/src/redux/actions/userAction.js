@@ -1,5 +1,5 @@
 import axios from "axios";
-import { CLEAR_ERRORS, LOAD_USER_FAIL, LOAD_USER_REQUEST, LOAD_USER_SUCCESS, LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS, REGISTER_USER_FAIL, REGISTER_USER_REQUEST, REGISTER_USER_SUCCESS, LOGOUT_SUCCESS, LOGOUT_FAIL } from "../constants/userConstant";
+import { CLEAR_ERRORS, LOAD_USER_FAIL, LOAD_USER_REQUEST, LOAD_USER_SUCCESS, LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS, REGISTER_USER_FAIL, REGISTER_USER_REQUEST, REGISTER_USER_SUCCESS, LOGOUT_SUCCESS, LOGOUT_FAIL, ALL_USERS_REQUEST, ALL_USERS_SUCCESS } from "../constants/userConstant";
 
 
 export const login = (email, password) => async(dispatch) => {
@@ -83,6 +83,21 @@ export const loadUser = () => async(dispatch) => {
         })
     }
 }
+
+
+
+// get All Users (Admin)
+export const getSalonOwnerUsers = () => async(dispatch) => {
+    try {
+        dispatch({ type: ALL_USERS_REQUEST })
+        const { data } = await axios.get(`http://localhost:5000/api/users/salonowner/allusers`)
+
+        dispatch({ type: ALL_USERS_SUCCESS, payload: data })
+    } catch (error) {
+        dispatch({ type: ALL_USERS_FAIL, payload: error.response.data.message })
+    }
+}
+
 
 
 // Clearing Errors

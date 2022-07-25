@@ -8,15 +8,18 @@ import { useSelector, useDispatch } from 'react-redux'
 // import { getAdminProduct } from '../../actions/productAction'
 // import { getAllOrders } from '../../actions/orderAction'
 // import { getAllUsers } from '../../actions/userAction'
-// import MetaData from '../layout/MetaData'
-
+import { getSalonOwnerSalons } from '../../redux/actions/salonAction'
+import { getSalonOwnerBarbers } from '../../redux/actions/barberAction'
+import { getSalonOwnerUsers } from '../../redux/actions/userAction'
 
 const Dashboard = () => {
 
   const dispatch = useDispatch()
 
-//   const { products } = useSelector((state) => state.products)
-//   const { orders } = useSelector((state) => state.allOrders)
+  const {salonsCount } = useSelector((state) => state.salons)
+  const { barbersCount } = useSelector((state) => state.barbers)
+  const { usersCount } = useSelector((state) => state.allUsers)
+
 //   const { users } = useSelector((state) => state.allUsers)
 
 //   let outOfStock = 0
@@ -28,10 +31,10 @@ const Dashboard = () => {
 //     })
 
   useEffect(() => {
-    // dispatch(getAdminProduct())
-    // dispatch(getAllOrders())
-    // dispatch(getAllUsers())
-  }, [])
+    dispatch(getSalonOwnerSalons())
+    dispatch(getSalonOwnerBarbers())
+    dispatch(getSalonOwnerUsers())
+  }, [dispatch])
 
 //   let totalAmount = 0
 //   orders &&
@@ -88,8 +91,8 @@ const Dashboard = () => {
   <Link to="/admin/appointments" class="container mx-auto p-9 bg-white max-w-sm rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300">
     <div class="flex justify-center items-center">
         <div>
-              <h1 class="mt-5 text-2xl font-medium">Appointments</h1>
-        <p class="mt-2 text-xl">20</p>
+              <h1 class="mt-5 text-2xl font-medium">Salons</h1>
+        <p class="mt-2 text-xl">{salonsCount}</p>
         </div>
     </div>
   </Link>
@@ -102,7 +105,7 @@ const Dashboard = () => {
     <div class="flex justify-center items-center">
         <div>
               <h1 class="mt-5 text-2xl font-medium">Barbers</h1>
-        <p class="mt-2 text-xl">20</p>
+        <p class="mt-2 text-xl">{barbersCount}</p>
         </div>
     </div>
   </Link>
@@ -113,7 +116,7 @@ const Dashboard = () => {
     <div class="flex justify-center items-center">
         <div>
               <h1 class="mt-5 text-2xl font-medium">Users</h1>
-        <p class="mt-2 text-xl" >20</p>
+        <p class="mt-2 text-xl" >{usersCount}</p>
         </div>
     </div>
   </Link>

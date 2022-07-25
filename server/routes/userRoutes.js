@@ -8,6 +8,7 @@ const userController = require("../controllers/userController")
 router.post('/register', userController.registerUser)
 router.post('/login', userController.loginUser)
 router.get('/logout', userController.logoutUser)
+router.get('/salonowner/allusers', userController.getAdminAllUsers)
 router.get('/getAppointments/:id', userController.getUserAppointments)
 
 

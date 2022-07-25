@@ -40,6 +40,7 @@ export const barbersReducer = (state = { barbers: [] }, action) => {
             return {
                 loading: false,
                 barbers: action.payload.barbers,
+                barbersCount: action.payload.barbersCount
             }
 
 
@@ -98,7 +99,7 @@ export const newBarberReducer = (state = { barber: {} }, action) => {
 }
 
 
-export const barberRatingsReducer = (state = {ratings: "" }, action) => {
+export const barberRatingsReducer = (state = { ratings: "" }, action) => {
 
     switch (action.type) {
         case UPDATE_BARBER_REQUEST:
@@ -110,7 +111,7 @@ export const barberRatingsReducer = (state = {ratings: "" }, action) => {
         case UPDATE_BARBER_SUCCESS:
             return {
                 loading: false,
-               ratings: action.payload.ratings,
+                ratings: action.payload.ratings,
                 // productsCount: action.payload.productsCount,
                 // resultPerPage: action.payload.resultPerPage,
                 // filteredProductsCount: action.payload.filteredProductsCount,
