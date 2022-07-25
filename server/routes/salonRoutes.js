@@ -11,7 +11,7 @@ router.get('/singleSalon/:id', salonController.getSingleSalon)
 router.get('/allSalons', salonController.getAllSalons)
 router.get('/getBarbers/:id', salonController.getSalonBarbers)
 
-router.get('/salonowner/salons', salonController.getAdminSalons)
+//router.get('/salonowner/salons', salonController.getAdminSalons)
 router.post('/salonowner/newsalon', salonController.createSalon)
 
 

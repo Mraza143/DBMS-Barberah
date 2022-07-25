@@ -54,6 +54,11 @@ const addReview = async(req, res) => {
     res.status(200).send(review)
     console.log(review)
 
+    /*
+     INSERT INTO `reviews` (`id`,`barberName`,`customerName`,`rating`,`comment`,`average`,`createdAt`,`updatedAt`,`barberId`) VALUES (DEFAULT,?,?,?,?,?,?,?,?);
+
+    */
+
 }
 
 // Get All Barbers 
@@ -66,6 +71,8 @@ const getAllReviews = catchAsyncErrors(async(req, res, next) => {
         success: true,
         reviews
     })
+
+    /*SELECT `id`, `barberName`, `customerName`, `rating`, `comment`, `average`, `createdAt`, `updatedAt`, `barberId` FROM `reviews` AS `reviews` WHERE `reviews`.`barberId` = '1'; */
 
 })
 
