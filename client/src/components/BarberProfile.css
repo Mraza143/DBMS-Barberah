@@ -1,3 +1,27 @@
+.barberStyle1 {
+    border-radius: 0px 100px 0px 100px;
+    border-top: 5px solid #ba29bd;
+}
+
+.barberStyle2 {
+    font-size: 1.7rem;
+    font-family: cursive;
+    color: #b078b7;
+}
+
+.barberStyle3 {
+    border: 2px solid purple;
+}
+
+.barberStyle4 {
+    font-family: cursive;
+}
+
+.barberStyle5 {
+    font-size: 2rem;
+    font-family: cursive;
+}
+
 .pakage {
     min-width: 10rem;
     padding: 10px;
@@ -70,7 +94,7 @@
 .reviews__title {
     font-size: 2rem;
     font-weight: 700;
-    font-family: "Montserrat", "Sans-serif";
+    font-family: cursive;
     color: black;
     padding: 1rem 0 2rem 0;
 }
