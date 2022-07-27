@@ -61,7 +61,7 @@ const BarberProfile = () => {
   // Appointment States
   const [customerName, setCustomerName] = useState(user[0]?.name)
   const [user_id, setUserId] = useState(user[0]?.id)
-  const [barberName, setBarberName] = useState(barber?.name)
+  const [barberName, setBarberName] = useState(barber.name)
   const [barber_id, setBarberId] = useState(barber?.id)
   const [salonName, setSalonName] = useState(barber?.worksAt)
   const [date, setDate] = useState('')
@@ -103,11 +103,14 @@ const BarberProfile = () => {
     e.preventDefault()
     setBarberName(barber.name)
     setSalonName(barber.worksAt)
+    console.log(" before problem" + barberName);
+    console.log("maybe" + barber.name)
+    console.log("after problem" + barberName);
 
     dispatch(
       createAppointmentForCustomers({
         customerName,
-        barberName,
+        barberName : barber.name,
         salonName,
         date,
         price,
@@ -119,18 +122,26 @@ const BarberProfile = () => {
 
   const submitHandler = (e) => {
     e.preventDefault()
+    //setBarberName(barber.name);
+    
     dispatch(
       createbarberReview({
-        barberName,
+        barberName : barber.name,
         customerName,
         rating,
         comment,
-        barber_id,
+        barber_id : barber.id,
       }),
     )
   }
 
   useEffect(() => {
+    dispatch(getAllBarbersDetails(id))
+    dispatch(getAllAppointments(id, name, sname))
+    dispatch(getAllReviews(id))
+    console.log(id, name, sname)
+
+    dispatch(getAllReviewsAverage(id))
     if (reviewError) {
       alert.error(reviewError)
       dispatch(clearErrors())
@@ -153,12 +164,7 @@ const BarberProfile = () => {
       // dispatch({ type: CREATE_REVIEW_RESET })
     }
 
-    dispatch(getAllBarbersDetails(id))
-    dispatch(getAllAppointments(id, name, sname))
-    dispatch(getAllReviews(id))
-    console.log(id, name, sname)
-
-    dispatch(getAllReviewsAverage(id))
+   
     //dispatch(getAllBarbersUrl(id))
     //dispatch(getBarbersAverage(id,ratings))
     //console.log(dispatch(getAllReviewsAverage(id)))

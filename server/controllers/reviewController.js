@@ -21,23 +21,27 @@ const Reviews = db.reviews;
 const addReview = async(req, res) => {
 
 
-    let barberId = req.params.id;
+    let barberId = req.body.barber_id;
 
     const reviews= await Reviews.findAll({where: { barberId: barberId }})
     //const barber = await Barbers.findById(req.params.id)
     let val = 0;
+    console.log(barberId);
     console.log("reviws length"+reviews.length)
-    if(reviews.length===0){
-    val= req.body.rating;
+    console.log("hello")
+
+    if(reviews.length!=0){
+        reviews.forEach((rev) => {
+            val += rev.rating
+        })
+        //product.ratings = avg / product.reviews.length
+        val = val / reviews.length
+    
   }else{
     /*val =
     reviews.reduce((acc, item) => item.rating + acc, 0) /
     reviews.length*/
-    reviews.forEach((rev) => {
-        val += rev.rating
-    })
-    //product.ratings = avg / product.reviews.length
-    val = val / reviews.length
+    val= req.body.rating;
    
     }
 
