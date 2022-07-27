@@ -7,10 +7,7 @@ const catchAsyncErrors = require('../middleware/catchAsyncErrors');
 const ErrorHandler = require('../utils/errorHandler');
 
 
-// create main Model
-//const Product = db.products
-//const Salons = db.salons
-//const Review = db.reviews
+
 const Barbers = db.barbers;
 const Reviews = db.reviews;
 
@@ -19,8 +16,6 @@ const Reviews = db.reviews;
 // 1. create Barber
 
 const addReview = async(req, res) => {
-
-
     let barberId = req.body.barber_id;
 
     const reviews= await Reviews.findAll({where: { barberId: barberId }})
@@ -101,10 +96,43 @@ const getAverageReviewsofASpecificBarber = catchAsyncErrors(async(req, res, next
       
       })
 
+const getAverageReviewsofASpecificSalon = catchAsyncErrors(async(req, res, next) => {
+        let salonName = req.params.name;
+        const barbers= await Barbers.findAll({where: { worksAt: salonName }})
+
+    if (barbers.length==0) {
+  res.status(200).json({
+    success: true,
+    salonAverage : ""
+    })
+    }
+
+    if(barbers.length!=0){
+        let salonAverage = 0;
+        //barbers.forEach((barber) => {
+            for (const barber of barbers) {
+            console.log("barber id " + barber.id);
+            const reviews= await Reviews.findAll({where: { barberId: barber.id}})
+            const lastItem = reviews[reviews.length-1];
+            const {average} = lastItem;
+            salonAverage = salonAverage + average;
+            }
+       // })
+        salonAverage = salonAverage /barbers.length;
+
+    res.status(200).json({
+     success: true,
+        salonAverage
+        })}
+
+})
+
+
 
 module.exports = {
     addReview,
     getAllReviews, 
-    getAverageReviewsofASpecificBarber
+    getAverageReviewsofASpecificBarber,
+    getAverageReviewsofASpecificSalon
 
 }

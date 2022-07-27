@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ALL_REVIEW_FAIL,ALL_REVIEW_REQUEST,ALL_REVIEW_SUCCESS,CLEAR_ERRORS,CREATE_REVIEW_FAIL,CREATE_REVIEW_REQUEST,CREATE_REVIEW_RESET,CREATE_REVIEW_SUCCESS ,ALL_REVIEW_AVERAGE_FAIL,ALL_REVIEW_AVERAGE_REQUEST,ALL_REVIEW_AVERAGE_SUCCESS } from "../constants/reviewConstant"
+import { ALL_SALON_REVIEW_AVERAGE_FAIL,ALL_SALON_REVIEW_AVERAGE_REQUEST,ALL_SALON_REVIEW_AVERAGE_SUCCESS,ALL_REVIEW_FAIL,ALL_REVIEW_REQUEST,ALL_REVIEW_SUCCESS,CLEAR_ERRORS,CREATE_REVIEW_FAIL,CREATE_REVIEW_REQUEST,CREATE_REVIEW_RESET,CREATE_REVIEW_SUCCESS ,ALL_REVIEW_AVERAGE_FAIL,ALL_REVIEW_AVERAGE_REQUEST,ALL_REVIEW_AVERAGE_SUCCESS } from "../constants/reviewConstant"
 
 
 export const getAllReviews = (id) => async(dispatch) => {
@@ -35,6 +35,26 @@ export const getAllReviewsAverage = (id) => async(dispatch) => {
   } catch (error) {
       dispatch({
           type: ALL_REVIEW_AVERAGE_FAIL,
+          payload: error.response.data.message,
+      })
+  }
+}
+
+export const getAllSalonReviewsAverage = (name) => async(dispatch) => {
+  try {
+      dispatch({ type: ALL_SALON_REVIEW_AVERAGE_REQUEST })
+      const { data } = await axios.get(`http://localhost:5000/api/reviews/salonAverage/${name}`);
+      //await axios.put(`http://localhost:5000/api/barbers/ratings/${id}`, data)
+      //http://localhost:5000/api/reviews/salonAverage/DMH
+
+
+      dispatch({
+          type: ALL_SALON_REVIEW_AVERAGE_SUCCESS,
+          payload: data,
+      })
+  } catch (error) {
+      dispatch({
+          type: ALL_SALON_REVIEW_AVERAGE_FAIL,
           payload: error.response.data.message,
       })
   }

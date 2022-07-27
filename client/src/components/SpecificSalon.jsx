@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getAllBarberss } from "../redux/actions/barberAction";
 // import { getAllSalonDetails ,getAllSalonCoordinates, getAllSalonUrl } from "../redux/actions/salonDetailsAction";
 import { getAllSalonDetails } from "../redux/actions/salonDetailsAction";
+import {getAllSalonReviewsAverage} from "../redux/actions/reviewAction"
 
 // import TheMap from "./TheMap";
 
@@ -34,6 +35,7 @@ const ShopCard1 = (props)=> {
         <div className="flex flex-col justify-center items-center display-flex justify-start w-full mb-6 p-2">       
           <p className="text-black text-base">Rating: {props.ratings} / 10</p>         
           <p className="text-black text-base">Experience: {props.experience} years</p>
+          
           <p className="text-black text-base">Sample Hair style</p>
         </div>
 
@@ -64,6 +66,7 @@ const SpecificSalon = () => {
     const dispatch = useDispatch();
 	  const {salon} = useSelector((state) => state.salon);
     const {barbers} = useSelector((state) => state.barbers);
+    const { salonAverage } = useSelector((state) => state.salonAverage)
     // const {salon :newSalon}=useSelector((state)=>state.newSalon)
     // console.log("Salon only : "+salon)
     // console.log("Salonsssss only : "+salons)
@@ -88,6 +91,7 @@ const SpecificSalon = () => {
     useEffect(()=>{
       dispatch(getAllSalonDetails(id));
       dispatch(getAllBarberss(name));
+      dispatch(getAllSalonReviewsAverage(name))
     //   dispatch(getAllSalonCoordinates(id));
     //   dispatch(getAllSalonUrl(id));
 
@@ -116,6 +120,7 @@ const SpecificSalon = () => {
               
                 <p className="text-white text-base font-bold ">Location: {salon.location}</p>             
               <p className=" text-white text-base font-bold ">Timings: {salon.timings} </p>
+              <p className=" text-white text-base font-bold ">Ratings: {salonAverage} </p>
              
             </div>
             <img

@@ -9,7 +9,7 @@ import { newSalonReducer, salonReducer } from './reducers/salonReducer'
 import { salonDetailsReducer } from './reducers/salonDetailsReducer'
 import { barbersDetailsReducer } from './reducers/barberDetailsReducer'
 import { appointmentReducer, newAppointmentReducer } from './reducers/appointmentsReducer'
-import { reviewsReducer, ReviewCreateReducer, reviewsAverageReducer } from './reducers/reviewReducer'
+import { reviewsReducer, ReviewCreateReducer, reviewsAverageReducer, reviewsSalonAverageReducer } from './reducers/reviewReducer'
 
 
 const reducer = combineReducers({
@@ -26,6 +26,7 @@ const reducer = combineReducers({
     newAppointment: newAppointmentReducer,
     reviews: reviewsReducer,
     average: reviewsAverageReducer,
+    salonAverage : reviewsSalonAverageReducer,
     // coordinates: salonCoordinatesReducer,
     // barberRating:  barberRatingsReducer,
     // url : salonUrlReducer,
