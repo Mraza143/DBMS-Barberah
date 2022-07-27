@@ -99,7 +99,7 @@ const NewBarber = () => {
     <Fragment>
       <div className="dashboard">
         <SideBar />
-        <div className="newProductContainer">
+        <div className="newSalonContainer">
           {/* --------------- */}
 
           <form 
@@ -192,7 +192,7 @@ const NewBarber = () => {
 
             <div className="input-container ic2 product_preview">
             <div
-            className="input createProductFormImage">
+            className="input createSalonFormImage">
               <img
               src={imagePreview}
               name="imagePreview"

@@ -1,9 +1,5 @@
 import React from "react";
-import FacebookIcon from '@material-ui/icons/Facebook';
-import InstagramIcon from '@material-ui/icons/Instagram';
-import TwitterIcon from '@material-ui/icons/Twitter';
 
-import logo from "/images/logooo.png";
 import "./Footer.css";
 
 const Footer = () => (

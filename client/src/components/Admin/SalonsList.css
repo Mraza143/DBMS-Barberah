@@ -1,4 +1,4 @@
-.productListContainer {
+.salonListContainer {
     width: 100%;
     box-sizing: border-box;
     background-color: rgb(255, 255, 255);
@@ -8,7 +8,7 @@
     height: 100vh;
 }
 
-#productListHeading {
+#salonListHeading {
     font: 900 3rem "Roboto";
     box-sizing: border-box;
     color: rgba(0, 0, 0, 0.637);
@@ -18,28 +18,28 @@
     text-shadow: 2px 0px 5px #4d1758;
 }
 
-.productListTable {
+.salonListTable {
     background-color: white;
     border: none !important;
 }
 
-.productListTable div {
+.salonListTable div {
     font: 300 1rem "Roboto";
     color: rgba(0, 0, 0, 0.678);
     border: none !important;
 }
 
-.productListTable a,
-.productListTable button {
+.salonListTable a,
+.salonListTable button {
     color: rgba(0, 0, 0, 0.527);
     transition: all 0.5s;
 }
 
-.productListTable a:hover {
+.salonListTable a:hover {
     color: tomato;
 }
 
-.productListTable button:hover {
+.salonListTable button:hover {
     color: rgb(236, 30, 30);
 }
 
@@ -64,7 +64,7 @@
 }
 
 @media screen and (max-width: 600px) {
-    .productListTable div {
+    .salonListTable div {
         font: 300 4vw "Roboto";
     }
 }

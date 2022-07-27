@@ -24,12 +24,12 @@ const ShopCard = ({id, location,  timings, image ,name})=> {
           <p class="text-body">{timings}</p>
           </div>
           <div class="btn">
-            <a class="fancy" href={`https://ropsten.etherscan.io/address/${location}`}>
+
         <span class="top-key"></span>
         <a class="text">Book Now</a>
         <span class="bottom-key-1"></span>
         <span class="bottom-key-2"></span>
-            </a> 
+
           </div>
         </div>
   </div>
