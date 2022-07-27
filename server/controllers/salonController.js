@@ -23,6 +23,8 @@ const createSalon = catchAsyncErrors(async(req, res, next) => {
         timings: req.body.timings,
         location: req.body.location,
         image: myCloud.secure_url,
+        latitude : req.body.latitude,
+        langitude :req.body.langitude
     }
 
     const salon = await Salons.create(info)

@@ -17,6 +17,8 @@ const NewBarber = () => {
   const [name, setName] = useState('')
   const [timings, setTimings]=useState('')
   const [location, setLocation]=useState('')
+  const [latitude, setLatitude] = useState('')
+  const [langitude, setLangitude] = useState('')
   
 
   const [image, setImage]=useState('')
@@ -45,6 +47,8 @@ const NewBarber = () => {
     myForm.set('timings', timings)
     myForm.set('location', location)
     myForm.set('image', image)
+    myForm.set('latitude',latitude)
+    myForm.set('langitude',langitude)
 
     // images.forEach((image) => {
     //   myForm.append('images', image)
@@ -143,6 +147,28 @@ const NewBarber = () => {
               <div className="cut cut-short"></div>
               <label htmlFor="location" className="placeholder">
                 Location
+              </label>
+            </div>
+            <div className="input-container ic2">
+              <input id="latitude" className="input" type="text"
+              required
+              value={latitude}
+              onChange={(e)=>setLatitude(e.target.value)}
+              placeholder=" " />
+              <div className="cut cut-short"></div>
+              <label htmlFor="latitude" className="placeholder">
+                Latitiude
+              </label>
+            </div>
+            <div className="input-container ic2">
+              <input id="langitude" className="input" type="text"
+              required
+              value={langitude}
+              onChange={(e)=>setLangitude(e.target.value)}
+              placeholder=" " />
+              <div className="cut cut-short"></div>
+              <label htmlFor="langitude" className="placeholder">
+                Langitude
               </label>
             </div>
 
