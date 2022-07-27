@@ -55,34 +55,7 @@ const BarbersList = ({ history }) => {
       flex: 0.3,
     },
 
-    // {
-    //   field: 'actions',
-    //   flex: 0.3,
-    //   headerName: 'Actions',
-    //   minWidth: 150,
-    //   type: 'number',
-    //   sortable: false,
-    //   renderCell: (params) => {
-    //     return (
-    //       <Fragment>
-    //         {/* <Link to={`/admin/product/${params.getValue(params.id, 'id')}`}> */}
-    //         <Link to={`/admin/product/`}>
-    //           <EditIcon />
-    //         </Link>
-
-    //         <Button
-    //           onClick={() =>
-    //             // deleteProductHandler(params.getValue(params.id, 'id'))
-    //             deleteProductHandler
-    //           }
-    //         >
-    //           <DeleteIcon />
-    //         </Button>
-    //       </Fragment>
-    //     )
-    //   },
-    // },
-
+   
   ]
 
 
@@ -101,7 +74,6 @@ const BarbersList = ({ history }) => {
 
   return (
     <Fragment>
-      {/* <MetaData title={`ALL PRODUCTS - Admin`} /> */}
 
       <div className="dashboard">
         <SideBar />

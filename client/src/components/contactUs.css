@@ -1,24 +1,44 @@
-h1,
-h2 {
-    font-weight: bold;
-    font-family: "Montserrat", "Helvetica Neue";
-}
-
-input[text],
-select {
-    width: 50%;
-}
-
-.try {
-    width: 70%;
-    text-align: left;
-}
-
-.again {
-    width: 30%;
-}
-
-input[type="text"],
-select {
-    border: visible;
-}
+        h1,
+        h2 {
+            font-weight: bold;
+            font-family: "Montserrat", "Helvetica Neue";
+        }
+        
+        input[text],
+        select {
+            width: 50%;
+        }
+        
+        .try {
+            width: 70%;
+            text-align: left;
+        }
+        
+        .again {
+            width: 30%;
+        }
+        
+        input[type="text"],
+        select {
+            border: visible;
+        }
+        
+        .mailBtn {
+            text-decoration: none;
+            transform: translateX(-100vw);
+            border: 2px solid lightblue;
+            padding: 3rem;
+            animation: mailBtnAnimation 2s forwards;
+        }
+        
+        .mailBtn>button {
+            text-decoration: none;
+            font: 200 3vmax "Roboto";
+            padding: 2vmax;
+        }
+        
+        @keyframes mailBtnAnimation {
+            to {
+                transform: translateX(0);
+            }
+        }

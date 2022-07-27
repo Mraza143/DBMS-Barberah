@@ -34,14 +34,7 @@ const BarbersList = ({ history }) => {
       minWidth: 150,
       flex: 0.5,
     },
-    // {
-    //   field: 'worksAt',
-    //   headerName: 'Works At',
-    // //   type: 'number',
-    //   minWidth: 150,
-    //   flex: 0.5,
-    // },
-
+   
     {
       field: 'timings',
       headerName: 'Timings',
@@ -56,34 +49,7 @@ const BarbersList = ({ history }) => {
       flex: 0.5,
     },
 
-    // {
-    //   field: 'actions',
-    //   flex: 0.3,
-    //   headerName: 'Actions',
-    //   minWidth: 150,
-    //   type: 'number',
-    //   sortable: false,
-    //   renderCell: (params) => {
-    //     return (
-    //       <Fragment>
-    //         {/* <Link to={`/admin/product/${params.getValue(params.id, 'id')}`}> */}
-    //         <Link to={`salonowner/salon/${params.getValue(params.id, 'id')}`}>
-    //           <EditIcon />
-    //         </Link>
-
-    //         <Button
-    //           onClick={() =>
-    //             // deleteProductHandler(params.getValue(params.id, 'id'))
-    //             deleteSalonHandler
-    //           }
-    //         >
-    //           <DeleteIcon />
-    //         </Button>
-    //       </Fragment>
-    //     )
-    //   },
-    // },
-
+   
   ]
 
 
@@ -101,7 +67,6 @@ const BarbersList = ({ history }) => {
 
   return (
     <Fragment>
-      {/* <MetaData title={`ALL PRODUCTS - Admin`} /> */}
 
       <div className="dashboard">
         <SideBar />
@@ -109,7 +74,6 @@ const BarbersList = ({ history }) => {
           <h1 id="productListHeading">All Salons</h1>
 
           <DataGrid
-            // rows={rows}
             rows={rows}
             columns={columns}
             pageSize={10}

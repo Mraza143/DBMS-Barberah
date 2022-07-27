@@ -77,22 +77,6 @@ const NewBarber = () => {
 
 
 
- 
-  // const createSalonImagesChange = (e) => {
-  //   const files = Array.from(e.target.files)
-  //   setImages([])
-  //   setImagesPreview([])
-  //   files.forEach((file) => {
-  //     const reader = new FileReader()
-  //     reader.onload = () => {
-  //       if (reader.readyState === 2) {
-  //         setImagesPreview((old) => [...old, reader.result])
-  //         setImages((old) => [...old, reader.result])
-  //       }
-  //     }
-  //     reader.readAsDataURL(file)
-  //   })
-  // }
 
 
   return (

@@ -3,10 +3,8 @@ import './Sidebar.css'
 import logo from "/images/logo2.png";
 import { Link } from 'react-router-dom'
 import AddIcon from '@material-ui/icons/Add'
-// import ListAltIcon from '@material-ui/icons/ListAlt'
 import DashboardIcon from '@material-ui/icons/Dashboard'
 import PeopleIcon from '@material-ui/icons/People'
-// import RateReviewIcon from '@material-ui/icons/RateReview'
 
 const Sidebar = () => {
   return (

@@ -9,6 +9,7 @@ import { getAllBarberss } from "../redux/actions/barberAction";
 import { getAllSalonDetails } from "../redux/actions/salonDetailsAction";
 import {getAllSalonReviewsAverage} from "../redux/actions/reviewAction"
 import TheMap from "./TheMap";
+import "./SpecificSalon.css"
 
 
 
@@ -91,32 +92,40 @@ const SpecificSalon = () => {
 
     }, [dispatch,id,name]);
     return (
-        <div className="gradient-bg-welcome flex w-full justify-center items-center">
+        <div className="gradient-bg-welcome flex w-full justify-center items-center flex-col">
         <div className=" m-2 flex flex-1
-          xl:min-w-[750px]
+          xl:min-w-[600px]
           2xl:min-w-[750px]
           2xl:max-w-[800px]
           sm:min-w-[470px]
           sm:max-w-[500px]
-          min-w-full
-          flex-col p-3 rounded-md hover:shadow-2xl"
+          
+          flex-col p-3 rounded-md "
         >
-          <div className="flex flex-col justify-center items-center w-full mt-3">
-            <div className=" flex flex-col  justify-center items-center w-full mb-6 p-10 s">
-              
-                <p className="text-white text-base font-bold ">Location: {salon.location}</p>             
-              <p className=" text-white text-base font-bold ">Timings: {salon.timings} </p>
-              <p className=" text-white text-base font-bold ">Ratings: {salonAverage} </p>
+          <div className="flex flex-col justify-center items-center w-full mt-3 hover:shadow-2xl">
+            <div className=" flex flex-col  justify-center items-center w-full mb-6">
+            
+                <p className="text-white text-[1.5rem] font-bold salonStyle1 ">Location: {salon.location}</p>             
+              <p className=" text-white text-[1.5rem] font-bold salonStyle1 ">Timings: {salon.timings} </p>
+              <p className=" text-white text-[1.5rem] font-bold salonStyle1 ">Ratings: {salonAverage} </p>
              
             </div>
+
+            <div className="w-[100%] h-[350px]">
             <img
              src={salon.image}
               alt="nature"
-              className="w-full h-128 2xl:h-96 rounded-md shadow-lg object-cover"
+              className=" w-[100%] h-[100%] rounded-md shadow-lg object-cover"
             />
-            <div className="bg-black p-3 px-5 w-max rounded-3xl -mt-5 shadow-2xl">
+
+            </div>
+            <div className="bg-black p-3 px-5 min-w-[40%] text-center rounded-xl -mt-5 shadow-2xl">
               <p className="text-[#37c7da] font-bold">{salon.name}</p>
             </div>
+
+
+          </div>
+               </div>
 
              <div className="mt-12 flex flex-wrap justify-center items-center ">
             {barbers.map((barber, i) => (
@@ -126,10 +135,7 @@ const SpecificSalon = () => {
             <div style={{width  :'70vw', height: '50vh'}} className=" mt-20 justify-center items-center">
               <TheMap latt={salon.latitude} langg={salon.langitude}/>
             </div>
-
-          </div>
           
-        </div>
         </div>
         )};
 

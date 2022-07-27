@@ -99,30 +99,6 @@ export const getSalonOwnerUsers = () => async(dispatch) => {
 }
 
 
-// Update User (Admin)
-export const salonOwnerUpdateUser = (id, userData) => async(dispatch) => {
-    try {
-        dispatch({ type: UPDATE_USER_REQUEST })
-
-        const config = { headers: { 'Content-Type': 'application/json' } }
-
-        const { data } = await axios.put(
-            `http://localhost:5000/api/users/salonowner/user/${id}`,
-            userData,
-            config,
-        )
-
-        dispatch({ type: UPDATE_USER_SUCCESS, payload: data })
-    } catch (error) {
-        dispatch({
-            type: UPDATE_USER_FAIL,
-            payload: error.response.data.message,
-        })
-    }
-}
-
-
-
 
 
 // Clearing Errors

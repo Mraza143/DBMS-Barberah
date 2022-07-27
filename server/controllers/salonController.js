@@ -9,7 +9,7 @@ const Barbers = db.barbers;
 
 
 
-const createSalon = catchAsyncErrors(async(req, res, next) => {
+const adminCreateSalon = catchAsyncErrors(async(req, res, next) => {
 
     const myCloud = await cloudinary.v2.uploader.upload(req.body.image, {
         folder: 'dbms_salonimages',
@@ -23,12 +23,16 @@ const createSalon = catchAsyncErrors(async(req, res, next) => {
         timings: req.body.timings,
         location: req.body.location,
         image: myCloud.secure_url,
-        latitude : req.body.latitude,
-        langitude :req.body.langitude
+        latitude: req.body.latitude,
+        langitude: req.body.langitude
     }
 
     const salon = await Salons.create(info)
-    res.status(200).json({ salon })
+
+    res.status(200).json({
+            success: true,
+            salon
+        })
         // console.log(salon)
 
 
@@ -94,7 +98,7 @@ const getSalonBarbers = async(req, res) => {
 }
 
 module.exports = {
-    createSalon,
+    adminCreateSalon,
     getSalonBarbers,
     getAdminSalons,
     getSingleSalon,

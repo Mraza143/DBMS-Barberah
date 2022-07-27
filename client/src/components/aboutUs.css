@@ -1,9 +1,12 @@
 .centered {
     position: absolute;
     align-items: center;
-    font-family: Montserrat, sans-serif;
+    font-family: cursive;
     font-weight: bold;
+    padding: 3rem;
+    background-color: black;
     top: 55%;
+    box-shadow: 3px 1px 59px 0px white;
     left: 50%;
     transform: translate(-50%, -50%);
 }

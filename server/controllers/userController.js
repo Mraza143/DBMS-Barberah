@@ -133,33 +133,24 @@ const getAdminAllUsers = catchAsyncErrors(async(req, res, next) => {
 })
 
 
-// Update User Role -Admin
-const updateUserRole = catchAsyncErrors(async(req, res, next) => {
-    // const newUserData = {
-    //     name: req.body.name,
-    //     email: req.body.email,
-    //     role: req.body.role,
-    // }
+// // Update User Role -Admin
+// const updateUserRole = catchAsyncErrors(async(req, res, next) => {
 
-    let id = req.params.id
-    const user = await Users.update(req.body, { where: { id: id } })
-
-    // user.name = req.body.name || user.name;
-    // user.email = req.body.email || user.email;
-    // user.role = req.body.role || user.role;
+//     let id = req.params.id
+//     const user = await Users.update(req.body, { where: { id: id } })
 
 
-    if (!user) {
-        return next(
-            new ErrorHandler(`User does not exist with Id: ${id}`, 400),
-        )
-    }
+//     if (!user) {
+//         return next(
+//             new ErrorHandler(`User does not exist with Id: ${id}`, 400),
+//         )
+//     }
 
-    res.status(200).json({
-        success: true,
-        // user
-    })
-})
+//     res.status(200).json({
+//         success: true,
+//         // user
+//     })
+// })
 
 
 
@@ -189,6 +180,5 @@ module.exports = {
     loginUser,
     logoutUser,
     getAdminAllUsers,
-    updateUserRole,
     getUserAppointments,
 }
