@@ -20,6 +20,18 @@ const Sidebar = () => {
         </p>
       </Link>
 
+      <Link to="/salonowner/salons">
+        <p>
+        <PeopleIcon /> All Salons
+        </p>
+      </Link>
+
+      <Link to="/salonowner/newsalon">
+        <p>
+        <AddIcon /> Create Salon
+        </p>
+      </Link>
+
       <Link to="/salonowner/barbers">
         <p>
         <PeopleIcon /> All Barbers
@@ -32,15 +44,19 @@ const Sidebar = () => {
         </p>
       </Link>
 
-      <Link to="/salonowner/salons">
+  
+  
+      <Link to="/salonowner/appointments">
         <p>
-        <PeopleIcon /> All Salons
+        <PeopleIcon /> All Appointments
         </p>
       </Link>
 
-      <Link to="/salonowner/newsalon">
+
+      
+      <Link to="/salonowner/users">
         <p>
-        <AddIcon /> Create Salon
+        <PeopleIcon /> All Users
         </p>
       </Link>
 

@@ -16,6 +16,9 @@ import BarbersList from "./components/Admin/BarbersList"
 import NewBarber from "./components/Admin/NewBarber"
 import SalonsList from "./components/Admin/SalonsList"
 import NewSalon from "./components/Admin/NewSalon"
+import AppointmentsList from "./components/Admin/AppointmentsList"
+import UsersList from './components/Admin/UsersList'
+import UpdateUser from './components/Admin/UpdateUser'
 
 
 const App = () => {
@@ -79,6 +82,19 @@ const App = () => {
   <NewSalon/>
 </Route>
 
+<Route exact path="/salonowner/appointments">
+  <AppointmentsList/>
+</Route>
+
+
+
+<Route exact path="/salonowner/users">
+  <UsersList/>
+</Route>
+
+<Route exact path="/salonowner/user/:id">
+  <UpdateUser/>
+</Route>
 
 
 

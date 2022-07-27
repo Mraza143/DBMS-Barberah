@@ -30,6 +30,7 @@ const getAppointmentOfASpecificBarber = catchAsyncErrors(async(req, res, next) =
 
 })
 
+
 const setAppointment = catchAsyncErrors(async(req, res, next) => {
 
     let info = {
@@ -38,7 +39,7 @@ const setAppointment = catchAsyncErrors(async(req, res, next) => {
         barberName: req.body.barberName,
         price: req.body.price,
         date: req.body.date,
-        userId : req.body.user_id
+        userId: req.body.user_id
     }
 
     const appointment = await Appointments.create(info)
@@ -54,6 +55,23 @@ const setAppointment = catchAsyncErrors(async(req, res, next) => {
     */
 
 })
+
+
+// Admin All Appointments
+const getAdminAppointments = catchAsyncErrors(async(req, res, next) => {
+
+    let appointmentsCount = await Appointments.count()
+    let appointments = await Appointments.findAll({})
+    res.status(200).json({
+        success: true,
+        appointments,
+        appointmentsCount
+    })
+
+})
+
+
+
 
 const deleteAppointment = catchAsyncErrors(async(req, res, next) => {
 
@@ -93,6 +111,7 @@ const updateAppointment = catchAsyncErrors(async(req, res, next) => {
 module.exports = {
     getAppointments,
     setAppointment,
+    getAdminAppointments,
     deleteAppointment,
     updateAppointment,
     getAppointmentOfASpecificBarber

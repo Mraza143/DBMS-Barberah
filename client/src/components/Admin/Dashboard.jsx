@@ -3,14 +3,33 @@ import Sidebar from './Sidebar'
 import './Dashboard.css'
 import { Typography } from '@material-ui/core'
 import { Link } from 'react-router-dom'
-import { Doughnut, Line } from 'react-chartjs-2'
+import { Doughnut} from 'react-chartjs-2'
 import { useSelector, useDispatch } from 'react-redux'
-// import { getAdminProduct } from '../../actions/productAction'
-// import { getAllOrders } from '../../actions/orderAction'
-// import { getAllUsers } from '../../actions/userAction'
 import { getSalonOwnerSalons } from '../../redux/actions/salonAction'
 import { getSalonOwnerBarbers } from '../../redux/actions/barberAction'
 import { getSalonOwnerUsers } from '../../redux/actions/userAction'
+import { getSalonOwnerAppointments } from '../../redux/actions/appointmentAction'
+// =====================================================
+
+
+
+
+const DashboardCard=({link, text, counter})=>{
+  return(
+    <div class="bg-gray-100 flex items-center min-w-[16rem] text-center stats">
+  <Link to={link} class="container mx-auto p-9 bg-white max-w-sm rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300">
+    <div class="flex justify-center items-center">
+        <div>
+              <h1 class="mt-5 text-2xl font-medium dashboardStyle1">{text}</h1>
+        <p class="mt-2 text-2xl dashboardStyle1">{counter}</p>
+        </div>
+    </div>
+  </Link>
+</div>
+  )
+}
+
+
 
 const Dashboard = () => {
 
@@ -19,52 +38,29 @@ const Dashboard = () => {
   const {salonsCount } = useSelector((state) => state.salons)
   const { barbersCount } = useSelector((state) => state.barbers)
   const { usersCount } = useSelector((state) => state.allUsers)
+  const {appointmentsCount}=useSelector((state)=>state.appointments)
 
-//   const { users } = useSelector((state) => state.allUsers)
-
-//   let outOfStock = 0
-//   products &&
-//     products.forEach((item) => {
-//       if (item.Stock === 0) {
-//         outOfStock += 1
-//       }
-//     })
 
   useEffect(() => {
     dispatch(getSalonOwnerSalons())
     dispatch(getSalonOwnerBarbers())
     dispatch(getSalonOwnerUsers())
+    dispatch(getSalonOwnerAppointments())
   }, [dispatch])
 
-//   let totalAmount = 0
-//   orders &&
-//     orders.forEach((item) => {
-//       totalAmount += item.totalPrice
-//     })
-
-  const lineState = {
-    labels: ['Initial Amount', 'Amount Earned'],
-    datasets: [
-      {
-        label: 'TOTAL AMOUNT',
-        backgroundColor: ['tomato'],
-        hoverBackgroundColor: ['rgb(197, 72, 49)'],
-        // data: [0, totalAmount],
-        data: [0, 100000],
-      },
-    ],
-  }
 
   const doughnutState = {
-    labels: ['Out of Stock', 'InStock'],
+    labels: ['Salons', 'Barbers'],
     datasets: [
       {
-        backgroundColor: ['#00A6B4', '#6800B4'],
-        hoverBackgroundColor: ['#4B5000', '#35014F'],
-        data: [3, 7],
+        backgroundColor: ['#390947', '#140970'],
+        hoverBackgroundColor: ['#893b9c', '#2e36aa'],
+        data: [salonsCount, barbersCount],
       },
     ],
   }
+
+
 
   return (
     <div className="dashboard">
@@ -77,61 +73,20 @@ const Dashboard = () => {
         <div className="dashboardSummary">
           <div>
             <p>
-              Total Amount <br /> Rs . 500000
+             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem error voluptas laudantium perferendis? Hic quam libero ipsam facilis dignissimos dolorum? Quisquam error sit placeat sed voluptatem alias architecto dolores deserunt.
             </p>
           </div>
 
 
-
-
           <div className="dashboardSummaryBox2">
-
-{/* ----------------- */}
-<div class="bg-gray-100 flex items-center min-w-[16rem] text-center stats">
-  <Link to="/admin/appointments" class="container mx-auto p-9 bg-white max-w-sm rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300">
-    <div class="flex justify-center items-center">
-        <div>
-              <h1 class="mt-5 text-2xl font-medium">Salons</h1>
-        <p class="mt-2 text-xl">{salonsCount}</p>
-        </div>
-    </div>
-  </Link>
-</div>
-
-
-{/* ------------ */}
-<div class="bg-gray-100 flex items-center min-w-[16rem] text-center stats">
-  <Link to="/admin/orders" class="container mx-auto p-9 bg-white max-w-sm rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300">
-    <div class="flex justify-center items-center">
-        <div>
-              <h1 class="mt-5 text-2xl font-medium">Barbers</h1>
-        <p class="mt-2 text-xl">{barbersCount}</p>
-        </div>
-    </div>
-  </Link>
-</div>
-{/* --------------- */}
-<div class="bg-gray-100 flex items-center min-w-[16rem] text-center stats">
-  <Link to="/admin/users" class="container mx-auto p-9 bg-white max-w-sm rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300">
-    <div class="flex justify-center items-center">
-        <div>
-              <h1 class="mt-5 text-2xl font-medium">Users</h1>
-        <p class="mt-2 text-xl" >{usersCount}</p>
-        </div>
-    </div>
-  </Link>
-</div>
-
-{/* --------------- */}
-
-
-            
+            <DashboardCard  link="/salonowner/salons" text="Salons" counter={salonsCount}  />
+            <DashboardCard  link="/salonowner/barbers" text="Barbers" counter={barbersCount}  />
+            <DashboardCard  link="/salonowner/appointments" text="Appointments" counter={appointmentsCount}  />
+            <DashboardCard  link="/salonowner/users" text="Users" counter={usersCount}  />
           </div>
+
         </div>
 
-        <div className="lineChart">
-          <Line data={lineState} />
-        </div>
 
         <div className="doughnutChart">
           <Doughnut data={doughnutState} />

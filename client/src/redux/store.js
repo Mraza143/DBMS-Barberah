@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from "redux-devtools-extension"
-import { allUsersReducer, userReducer } from "./reducers/userReducer"
+import { allUsersReducer, profileReducer, userReducer } from "./reducers/userReducer"
 import { barbersReducer, newBarberReducer } from './reducers/barberReducer'
 import { newSalonReducer, salonReducer } from './reducers/salonReducer'
 // import { newSalonReducer } from './reducers/salonReducer'
@@ -15,6 +15,7 @@ import { reviewsReducer, ReviewCreateReducer, reviewsAverageReducer, reviewsSalo
 const reducer = combineReducers({
     user: userReducer,
     allUsers: allUsersReducer,
+    userProfile: profileReducer,
     salons: salonReducer,
     newSalon: newSalonReducer,
     barbers: barbersReducer,
@@ -26,7 +27,7 @@ const reducer = combineReducers({
     newAppointment: newAppointmentReducer,
     reviews: reviewsReducer,
     average: reviewsAverageReducer,
-    salonAverage : reviewsSalonAverageReducer,
+    salonAverage: reviewsSalonAverageReducer,
     // coordinates: salonCoordinatesReducer,
     // barberRating:  barberRatingsReducer,
     // url : salonUrlReducer,

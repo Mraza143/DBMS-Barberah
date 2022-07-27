@@ -7,18 +7,14 @@
 }
 
 .dashboardContainer {
-    border: 3px solid #950fb3;
-    /* background-color: rgb(255, 255, 255); */
-    background-color: rgb(213 126 245);
-    /* padding: 3rem 0; */
+    background-color: rgb(214 175 229);
 }
 
 .dashboardContainer>h1 {
     color: #fff;
     font: 900 3rem "Roboto";
     text-align: center;
-    /* background-color: transparent!important; */
-    background-color: rgb(174 10 209 / 93%)!important;
+    background-color: rgb(127 0 155 / 93%)!important;
     padding: 1rem;
     margin: auto;
     text-shadow: 4px 3px 0px #4d1758;
@@ -36,9 +32,8 @@
 }
 
 .dashboardSummary>div>p {
-    /* background-color: rgb(174 10 209 / 93%); */
-    color: white;
-    font: 700 1.7rem "Roboto";
+    color: #601074;
+    font: 700 1.4rem "Roboto";
     text-align: center;
     padding: 1.5rem;
     width: 100%;
@@ -66,6 +61,10 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+.dashboardStyle1 {
+    font-family: cursive;
 }
 
 .dashboardSummaryBox2>a:first-child {

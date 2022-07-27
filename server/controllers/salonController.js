@@ -26,7 +26,7 @@ const createSalon = catchAsyncErrors(async(req, res, next) => {
     }
 
     const salon = await Salons.create(info)
-    res.status(200).send(salon)
+    res.status(200).json({ salon })
         // console.log(salon)
 
 

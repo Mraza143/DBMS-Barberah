@@ -1,5 +1,5 @@
 import axios from "axios";
-import { CLEAR_ERRORS, LOAD_USER_FAIL, LOAD_USER_REQUEST, LOAD_USER_SUCCESS, LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS, REGISTER_USER_FAIL, REGISTER_USER_REQUEST, REGISTER_USER_SUCCESS, LOGOUT_SUCCESS, LOGOUT_FAIL, ALL_USERS_REQUEST, ALL_USERS_SUCCESS } from "../constants/userConstant";
+import { CLEAR_ERRORS, LOAD_USER_FAIL, LOAD_USER_REQUEST, LOAD_USER_SUCCESS, LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS, REGISTER_USER_FAIL, REGISTER_USER_REQUEST, REGISTER_USER_SUCCESS, LOGOUT_SUCCESS, LOGOUT_FAIL, ALL_USERS_REQUEST, ALL_USERS_SUCCESS, UPDATE_USER_REQUEST, UPDATE_USER_SUCCESS, UPDATE_USER_FAIL } from "../constants/userConstant";
 
 
 export const login = (email, password) => async(dispatch) => {
@@ -97,6 +97,31 @@ export const getSalonOwnerUsers = () => async(dispatch) => {
         dispatch({ type: ALL_USERS_FAIL, payload: error.response.data.message })
     }
 }
+
+
+// Update User (Admin)
+export const salonOwnerUpdateUser = (id, userData) => async(dispatch) => {
+    try {
+        dispatch({ type: UPDATE_USER_REQUEST })
+
+        const config = { headers: { 'Content-Type': 'application/json' } }
+
+        const { data } = await axios.put(
+            `http://localhost:5000/api/users/salonowner/user/${id}`,
+            userData,
+            config,
+        )
+
+        dispatch({ type: UPDATE_USER_SUCCESS, payload: data })
+    } catch (error) {
+        dispatch({
+            type: UPDATE_USER_FAIL,
+            payload: error.response.data.message,
+        })
+    }
+}
+
+
 
 
 
