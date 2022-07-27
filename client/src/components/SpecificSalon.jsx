@@ -1,22 +1,16 @@
 import React from "react";
 import { useParams} from "react-router-dom";
 import { useState ,useEffect} from "react";
-// import {GoogleMap , withScriptjs , withGoogleMap} from "react-google-maps";
+//import {GoogleMap , withScriptjs , withGoogleMap} from "react-google-maps";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllBarberss } from "../redux/actions/barberAction";
 // import { getAllSalonDetails ,getAllSalonCoordinates, getAllSalonUrl } from "../redux/actions/salonDetailsAction";
 import { getAllSalonDetails } from "../redux/actions/salonDetailsAction";
 import {getAllSalonReviewsAverage} from "../redux/actions/reviewAction"
+import TheMap from "./TheMap";
 
-// import TheMap from "./TheMap";
 
-/*function Map(){
-  return (<GoogleMap defaultZoom={10}  defaultCenter={{lat:24.8608, lng : 67.0104}}/>
-  );
-}
-const  WrappedMap = withScriptjs(withGoogleMap(Map));
-*/
 
 const ShopCard1 = (props)=> {
   let text = "/specificBarber/"  + props.id+ "/"+ props.name + "/" +props.sname;
@@ -82,7 +76,7 @@ const SpecificSalon = () => {
     
 
     //const l1 = salon.coordinates["latitude"] ;
-    //const l2=67.020499918;
+    //24.8166634 67.0333332 const l2=67.020499918;
 
     const sname= salon.name;
     
@@ -93,14 +87,6 @@ const SpecificSalon = () => {
       dispatch(getAllBarberss(name));
       dispatch(getAllSalonReviewsAverage(name))
     //   dispatch(getAllSalonCoordinates(id));
-    //   dispatch(getAllSalonUrl(id));
-
-
-      //setImagePath(salon.imagePath.url)
-
-
-  
-      
 
 
     }, [dispatch,id,name]);
@@ -137,9 +123,9 @@ const SpecificSalon = () => {
             <ShopCard1 key={i} id={barber.id} ratings={barber.ratings} image={barber.image}  name= {barber.name}  experience={barber.experience} sname={sname} />))}
             </div>
 
-            {/*<div style={{width  :'70vw', height: '50vh'}} className=" mt-20 justify-center items-center">
-              <TheMap latt={coordinates["latitude"]} langg={coordinates["langitude"]}/>
-            </div>*/}
+            <div style={{width  :'70vw', height: '50vh'}} className=" mt-20 justify-center items-center">
+              <TheMap latt={salon.latitude} langg={salon.langitude}/>
+            </div>
 
           </div>
           
