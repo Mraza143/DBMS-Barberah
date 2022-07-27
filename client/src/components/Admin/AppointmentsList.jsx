@@ -64,33 +64,6 @@ const BarbersList = ({ history }) => {
         flex: 0.3,
       },
 
-    // {
-    //   field: 'actions',
-    //   flex: 0.3,
-    //   headerName: 'Actions',
-    //   minWidth: 150,
-    //   type: 'number',
-    //   sortable: false,
-    //   renderCell: (params) => {
-    //     return (
-    //       <Fragment>
-    //         {/* <Link to={`/admin/product/${params.getValue(params.id, 'id')}`}> */}
-    //         <Link to={`salonowner/salon/${params.getValue(params.id, 'id')}`}>
-    //           <EditIcon />
-    //         </Link>
-
-    //         <Button
-    //           onClick={() =>
-    //             // deleteProductHandler(params.getValue(params.id, 'id'))
-    //             deleteSalonHandler
-    //           }
-    //         >
-    //           <DeleteIcon />
-    //         </Button>
-    //       </Fragment>
-    //     )
-    //   },
-    // },
 
   ]
 
@@ -115,8 +88,8 @@ const BarbersList = ({ history }) => {
 
       <div className="dashboard">
         <SideBar />
-        <div className="productListContainer">
-          <h1 id="productListHeading">All Appointments</h1>
+        <div className="appointmentListContainer">
+          <h1 id="appointmentListHeading">All Appointments</h1>
 
           <DataGrid
             // rows={rows}
@@ -124,7 +97,7 @@ const BarbersList = ({ history }) => {
             columns={columns}
             pageSize={10}
             disableSelectionOnClick
-            className="productListTable"
+            className="appointmentListTable"
             autoHeight
           />
         </div>

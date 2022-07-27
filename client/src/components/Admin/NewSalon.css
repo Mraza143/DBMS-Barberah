@@ -1,32 +1,3 @@
-.newProductContainer {
-    width: 100%;
-    box-sizing: border-box;
-    background-color: rgb(221, 221, 221);
-    border-left: 1px solid rgba(0, 0, 0, 0.158);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    /* height: 100vh; */
-}
-
-.product_preview {
-    height: 150px;
-}
-
-.createProductFormImage {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    overflow-x: auto;
-    padding: 20px 0;
-}
-
-.createProductFormImage>img {
-    width: 3vmax;
-    margin: 0 0.5vmax;
-}
 
 
 /* ------------------- */
@@ -97,6 +68,36 @@
 .input:not(:placeholder-shown)~.placeholder {
     color: #808097;
 }
+.newSalonContainer {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: rgb(221, 221, 221);
+    border-left: 1px solid rgba(0, 0, 0, 0.158);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; */
+}
+
+.product_preview {
+    height: 150px;
+}
+
+.createSalonFormImage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    overflow-x: auto;
+    padding: 20px 0;
+}
+
+.createSalonFormImage>img {
+    width: 3vmax;
+    margin: 0 0.5vmax;
+}
+
 
 .input:focus~.placeholder {
     /* color: #dc2f55; */

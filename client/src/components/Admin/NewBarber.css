@@ -1,4 +1,4 @@
-.newProductContainer {
+.newBarberContainer {
     width: 100%;
     box-sizing: border-box;
     background-color: rgb(221, 221, 221);
@@ -14,7 +14,7 @@
     height: 150px;
 }
 
-.createProductFormImage {
+.createBarberFormImage {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,7 +23,7 @@
     padding: 20px 0;
 }
 
-.createProductFormImage>img {
+.createBarberFormImage>img {
     width: 3vmax;
     margin: 0 0.5vmax;
 }

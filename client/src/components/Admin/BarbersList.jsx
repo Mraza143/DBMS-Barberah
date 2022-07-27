@@ -77,8 +77,8 @@ const BarbersList = ({ history }) => {
 
       <div className="dashboard">
         <SideBar />
-        <div className="productListContainer">
-          <h1 id="productListHeading">All Barbers</h1>
+        <div className="barberListContainer">
+          <h1 id="barberListHeading">All Barbers</h1>
 
           <DataGrid
             // rows={rows}
@@ -86,7 +86,7 @@ const BarbersList = ({ history }) => {
             columns={columns}
             pageSize={10}
             disableSelectionOnClick
-            className="productListTable"
+            className="barberListTable"
             autoHeight
           />
         </div>
